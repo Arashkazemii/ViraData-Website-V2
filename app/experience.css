@@ -1202,6 +1202,37 @@ html[dir="rtl"] .request-slip {
   border-bottom: 1px solid var(--line);
   font-size: 0.9rem;
 }
+.contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.contact-feedback {
+  padding: 14px 18px;
+  margin-block: 18px;
+  border-inline-start: 3px solid;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.contact-feedback--success {
+  background: #dcebe4;
+  border-color: #307455;
+  color: #183e2d;
+}
+.contact-feedback--error {
+  background: #f6e4df;
+  border-color: #a34b39;
+  color: #682e23;
+}
+.contact-panel fieldset:disabled {
+  opacity: 0.7;
+}
+.contact-panel input[dir="ltr"] {
+  text-align: start;
+}
 .site-footer {
   background: #0a1019;
 }

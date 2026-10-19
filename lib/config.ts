@@ -19,7 +19,6 @@ export const site = {
       return "";
     }
   })(),
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   logoPath: process.env.NEXT_PUBLIC_LOGO_PATH || "/logo-1.png",
 };
 
