@@ -1,0 +1,138 @@
+export const storyCopy = {
+  fa: {
+    label: "پروندهٔ نمایشی / از درخواست تا تصمیم",
+    question: "فروش رشد کرده؛ چرا سود کمتر شده؟",
+    sample: "روایت نمایشی · دادهٔ ساختگی",
+    unit: "میلیون تومان",
+    previous: "دورهٔ قبل",
+    current: "دورهٔ جاری",
+    sales: "فروش",
+    purchase: "بهای خرید",
+    operating: "هزینهٔ عملیاتی",
+    profit: "سود عملیاتی",
+    margin: "حاشیهٔ سود",
+    product: "محصول",
+    quantity: "تعداد",
+    cost: "بهای واحد",
+    delta: "افزایش هزینه",
+    detail: "ردیف‌های سازندهٔ عدد",
+    definition: "فروش − بهای خرید − هزینهٔ عملیاتی",
+    assumption:
+      "فرض نمونه: تمام خریدها فروخته شده‌اند؛ موجودی، مالیات و هزینهٔ مالی در مدل نیست.",
+    next: "بررسی شرایط خرید محصول الف",
+    nextBody:
+      "پیش از تغییر قیمت فروش، افزایش بهای واحد و شرایط تأمین را بررسی کنید. این پیشنهادِ بررسی است، نه تضمین نتیجه.",
+    evidence: "مبنای قابل بررسی",
+    scope: "دو دورهٔ هم‌اندازه · سه محصول",
+    instruction: "اسکرول کنید؛ مسیر پاسخ را ببینید.",
+    openStory: "مسیر پاسخ را دنبال کنید",
+    source: "سند نمونهٔ خرید",
+    sourceBody:
+      "درخواست خرید ابتدا توسط مسئول واحد بررسی می‌شود؛ تأیید بودجه پیش از ثبت سفارش لازم است.",
+    assistantQuestion: "مراحل تأیید درخواست خرید چیست؟",
+    answer:
+      "ابتدا بررسی مسئول واحد؛ سپس تأیید بودجه و ثبت سفارش. مبنای پاسخ را در بند زیر ببینید.",
+    sourceLabel: "منبع ساختگی · راهنمای خرید، بند ۲",
+    noAI: "پیش‌نمایش طراحی؛ بدون اتصال AI یا پایگاه داده",
+    steps: [
+      [
+        "دادهٔ خام",
+        "پاسخ در یک فایل نیست.",
+        "فروش، خرید و هزینه‌ها جدا ثبت شده‌اند. دوره و محصول را به هم وصل می‌کنیم؛ ردیف‌های محاسبه قابل بررسی می‌مانند.",
+      ],
+      [
+        "تعریف شاخص",
+        "قبل از عدد، معنی آن.",
+        "دو دورهٔ هم‌اندازه را مقایسه می‌کنیم. منظور از سود در این مثال، فروش پس از کسر بهای خرید و هزینهٔ عملیاتی است.",
+      ],
+      [
+        "گزارش",
+        "یک تصویر، سه زاویه.",
+        "فروش بالا رفته، اما هزینه‌ها بیشتر رشد کرده‌اند. گزارش مالی و فروش و خرید اکنون از یک مبنا حساب می‌شوند.",
+      ],
+      [
+        "بینش",
+        "رشد فروش، تمام داستان نیست.",
+        "افزایش بهای خرید و هزینهٔ عملیاتی، رشد فروش را خنثی کرده است. پل تغییرات نشان می‌دهد افت سود دقیقاً از کجا می‌آید.",
+      ],
+      [
+        "جزئیات",
+        "هر عدد، یک مسیر بررسی.",
+        "افزایش خرید را تا سطح محصول باز می‌کنیم. سهم محصول الف بیشتر است؛ تعداد و بهای واحد آن هم قابل بررسی‌اند.",
+      ],
+      [
+        "تصمیم بعدی",
+        "پاسخ روشن. اقدام قابل بررسی.",
+        "پرسش بعدی مشخص می‌شود: شرایط تأمین محصول الف چه تغییری کرده؟ تصمیم با فرض‌ها و مبنای عدد همراه می‌شود.",
+      ],
+    ],
+  },
+  en: {
+    label: "ILLUSTRATED CASE / REQUEST TO DECISION",
+    question: "Sales are up. Why is profit down?",
+    sample: "Illustrated scenario · synthetic data",
+    unit: "Million tomans",
+    previous: "Previous period",
+    current: "Current period",
+    sales: "Sales",
+    purchase: "Purchase cost",
+    operating: "Operating costs",
+    profit: "Operating profit",
+    margin: "Profit margin",
+    product: "Product",
+    quantity: "Units",
+    cost: "Unit cost",
+    delta: "Cost increase",
+    detail: "The rows behind the number",
+    definition: "Sales − purchase cost − operating costs",
+    assumption:
+      "Sample assumption: all purchases are sold; no inventory, tax or finance costs are modeled.",
+    next: "Review Product A purchasing terms",
+    nextBody:
+      "Before changing sales prices, investigate unit costs and supplier terms. This is a next investigation, not a promised outcome.",
+    evidence: "INSPECTABLE EVIDENCE",
+    scope: "Two equal periods · three products",
+    instruction: "Scroll to follow the answer.",
+    openStory: "Follow the answer",
+    source: "Sample purchasing document",
+    sourceBody:
+      "The department owner reviews a purchase request first. Budget approval is required before placing the order.",
+    assistantQuestion: "How is a purchase request approved?",
+    answer:
+      "First, department review. Then budget approval and order placement. Inspect the supporting passage below.",
+    sourceLabel: "Fictional source · purchasing guide, §2",
+    noAI: "Design preview; no AI or database connection",
+    steps: [
+      [
+        "SOURCE DATA",
+        "The answer is not in one file.",
+        "Sales, purchases and expenses are recorded separately. We connect periods and products, keeping the underlying rows inspectable.",
+      ],
+      [
+        "METRIC DEFINITION",
+        "Meaning before measurement.",
+        "Compare two periods of equal length. In this example, profit means sales less purchase costs and operating costs.",
+      ],
+      [
+        "REPORT",
+        "One picture. Three perspectives.",
+        "Sales increased, but costs grew faster. Finance, sales and procurement now reconcile to the same source.",
+      ],
+      [
+        "INSIGHT",
+        "Growth is only half the story.",
+        "Purchase and operating cost increases outweigh the sales increase. The change bridge accounts for the entire profit decline.",
+      ],
+      [
+        "DETAIL",
+        "Every number has a way in.",
+        "Open the purchase increase by product. Product A contributes the most; both its quantity and unit cost can be inspected.",
+      ],
+      [
+        "NEXT DECISION",
+        "A clear answer. A reviewable action.",
+        "The next question is specific: what changed in Product A supplier terms? Carry the assumptions and numerical evidence into the review.",
+      ],
+    ],
+  },
+} as const;

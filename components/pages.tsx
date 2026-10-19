@@ -1,9 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ContactForm } from "./contact-form";
-import { DataField, HeroWords, Reveal } from "./motion-system";
-import { demos, href, type DemoId, type Locale } from "@/lib/config";
+import { HeroWords, Reveal } from "./motion-system";
+import {
+  DecisionStory,
+  HeroReport,
+  AssistantPreview,
+  DashboardPreview,
+  MethodLedger,
+  ReportPanel,
+} from "./decision-story";
+import { demos, href, site, type DemoId, type Locale } from "@/lib/config";
 import { getCopy } from "@/lib/copy";
+import { storyCopy } from "@/lib/story-copy";
+import { number } from "@/lib/story-data";
 
 function ArrowLink({
   href: to,
@@ -21,7 +31,6 @@ function ArrowLink({
     </Link>
   );
 }
-
 function SectionIndex({
   value,
   children,
@@ -37,89 +46,53 @@ function SectionIndex({
   );
 }
 
-function FinalCta({ lang }: { lang: Locale }) {
-  const c = getCopy(lang).home;
-  return (
-    <section className="final-cta">
-      <div className="container final-cta-inner">
-        <span className="final-orbit" aria-hidden="true" />
-        <div>
-          <span className="eyebrow">
-            {lang === "fa" ? "گام بعدی" : "THE NEXT STEP"}
-          </span>
-          <h2>{c.closeTitle}</h2>
-          <p>{c.closeBody}</p>
-          <ArrowLink
-            href={href(lang, "contact")}
-            className="button button-light"
-          >
-            {c.closeCta}
-          </ArrowLink>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function HomePage({ lang }: { lang: Locale }) {
   const c = getCopy(lang);
-  const anchors = ["assistants", "analytics", "decisions"];
+  const s = storyCopy[lang];
   return (
-    <main id="main">
+    <main id="main" className="home-page">
       <section className="home-hero">
         <div className="container hero-inner">
           <div className="hero-copy">
-            <span className="eyebrow hero-eyebrow">
-              <span className="eyebrow-line" />
-              {c.home.eyebrow}
-            </span>
+            <span className="eyebrow hero-eyebrow">{c.home.eyebrow}</span>
             <h1>
               <HeroWords text={c.home.title} />
             </h1>
             <p className="hero-lead">{c.home.lead}</p>
             <div className="hero-actions">
-              <ArrowLink
-                href={href(lang, "solutions")}
-                className="button button-primary"
-              >
+              <ArrowLink href="#story" className="button button-primary">
+                {s.openStory}
+              </ArrowLink>
+              <ArrowLink href={href(lang, "solutions")}>
                 {c.home.primary}
               </ArrowLink>
-              <ArrowLink href={href(lang, "contact")}>
-                {c.home.secondary}
-              </ArrowLink>
             </div>
+            <ArrowLink href={href(lang, "contact")} className="hero-contact">
+              {c.home.secondary}
+            </ArrowLink>
           </div>
-          <div className="hero-graphic">
-            <DataField lang={lang} />
-          </div>
+          <HeroReport lang={lang} />
         </div>
         <div className="container hero-baseline">
-          <span>01 / 05</span>
-          <span>
-            {lang === "fa" ? "شفافیت از دل پیچیدگی" : "CLARITY FROM COMPLEXITY"}
-          </span>
-          <span className="scroll-mark" aria-hidden="true">
-            ↓
-          </span>
+          <span>{s.label}</span>
+          <span>{s.instruction} ↓</span>
         </div>
       </section>
-
+      <DecisionStory lang={lang} />
       <section className="problem-section section-pad">
         <div className="container problem-grid">
           <div>
-            <SectionIndex value="01">
+            <SectionIndex value={number(1, lang)}>
               {lang === "fa" ? "شناخت مسئله" : "THE STARTING POINT"}
             </SectionIndex>
-            <Reveal>
-              <h2>{c.home.problemTitle}</h2>
-            </Reveal>
+            <h2>{c.home.problemTitle}</h2>
           </div>
           <div className="problem-detail">
             <p className="large-copy">{c.home.problemBody}</p>
             <div className="problem-tags">
               {c.home.problemTags.map((tag, i) => (
                 <span key={tag}>
-                  <b>{String(i + 1).padStart(2, "0")}</b>
+                  <b>{number(i + 1, lang)}</b>
                   {tag}
                 </span>
               ))}
@@ -127,10 +100,11 @@ export function HomePage({ lang }: { lang: Locale }) {
           </div>
         </div>
       </section>
-
       <section className="families-section section-pad">
         <div className="container">
-          <SectionIndex value="02">{c.home.familiesLabel}</SectionIndex>
+          <SectionIndex value={number(2, lang)}>
+            {c.home.familiesLabel}
+          </SectionIndex>
           <div className="section-heading-row">
             <h2>
               {lang === "fa"
@@ -145,12 +119,12 @@ export function HomePage({ lang }: { lang: Locale }) {
           </div>
           <div className="family-list">
             {c.home.families.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.06}>
+              <Reveal key={item.title}>
                 <Link
                   className="family-row"
-                  href={`${href(lang, "solutions")}#${anchors[i]}`}
+                  href={`${href(lang, "solutions")}#${["assistants", "analytics", "decisions"][i]}`}
                 >
-                  <span className="family-number">0{i + 1}</span>
+                  <span className="family-number">{number(i + 1, lang)}</span>
                   <div className="family-title">
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
@@ -164,136 +138,114 @@ export function HomePage({ lang }: { lang: Locale }) {
           </div>
         </div>
       </section>
-
       <section className="process-section section-pad">
-        <div className="container">
-          <SectionIndex value="03">
-            {lang === "fa" ? "روش همکاری" : "HOW WE WORK"}
-          </SectionIndex>
-          <h2>{c.home.stepsTitle}</h2>
-          <div className="process-line">
+        <div className="container process-editorial">
+          <div>
+            <SectionIndex value={number(3, lang)}>
+              {lang === "fa" ? "روش همکاری" : "HOW WE WORK"}
+            </SectionIndex>
+            <h2>{c.home.stepsTitle}</h2>
+            <MethodLedger lang={lang} />
+          </div>
+          <div className="process-notes">
             {c.home.steps.map(([title, body], i) => (
-              <Reveal key={title} className="process-step" delay={i * 0.08}>
-                <span className="step-node">0{i + 1}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
+              <Reveal key={title}>
+                <article>
+                  <span>{number(i + 1, lang)}</span>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </article>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
-
       <section className="demo-tease section-pad">
-        <div className="container demo-tease-grid">
-          <div>
-            <SectionIndex value="04">
-              {lang === "fa" ? "پیش‌نمایش" : "A CLOSER LOOK"}
-            </SectionIndex>
-            <h2>{c.home.demosTitle}</h2>
-            <p className="large-copy">{c.home.demosBody}</p>
-            <ArrowLink
-              href={href(lang, "demos")}
-              className="button button-outline"
-            >
-              {c.home.demosCta}
-            </ArrowLink>
-          </div>
-          <div className="demo-tease-visual">
-            <div className="tease-topline">
-              <span>
+        <div className="container">
+          <div className="section-heading-row">
+            <div>
+              <span className="eyebrow">
                 {lang === "fa" ? "دو مسیر مستقل" : "TWO DISTINCT WORKSTREAMS"}
               </span>
-              <span>01 / 02</span>
+              <h2>{c.home.demosTitle}</h2>
             </div>
-            <div className="tease-rows">
-              {(["dashboard", "assistant"] as DemoId[]).map((id, i) => (
-                <div key={id}>
-                  <span className="tease-id">0{i + 1}</span>
-                  <strong>{c.demos[id].title}</strong>
-                  <span className="status-pill">
-                    {c.common.status[demos[id].status]}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="sample-caption">{c.common.sample}</p>
+            <p>{c.home.demosBody}</p>
+          </div>
+          <div className="demo-gateways">
+            {(["dashboard", "assistant"] as DemoId[]).map((id, i) => (
+              <Link
+                href={`${href(lang, "demos")}#${id}`}
+                key={id}
+                className={`demo-gateway gateway-${id}`}
+              >
+                <span className="status-pill">
+                  {c.common.status[demos[id].status]}
+                </span>
+                <h3>{c.demos[id].title}</h3>
+                <p>{i === 0 ? s.question : s.assistantQuestion}</p>
+                <strong>
+                  {i === 0
+                    ? lang === "fa"
+                      ? "درخواست / گزارش / جزئیات"
+                      : "REQUEST / REPORT / DETAIL"
+                    : lang === "fa"
+                      ? "پرسش / پاسخ / منبع"
+                      : "QUESTION / ANSWER / SOURCE"}
+                </strong>
+                <span className="gateway-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </Link>
+            ))}
+          </div>
+          <ArrowLink href={href(lang, "demos")}>{c.home.demosCta}</ArrowLink>
+        </div>
+      </section>
+      <section className="home-close section-pad">
+        <div className="container">
+          <span className="eyebrow">
+            {lang === "fa" ? "حالا، مسئلهٔ شما" : "NOW, YOUR QUESTION"}
+          </span>
+          <h2>{c.home.closeTitle}</h2>
+          <div>
+            <p>{c.home.closeBody}</p>
+            <ArrowLink
+              href={href(lang, "contact")}
+              className="button button-primary"
+            >
+              {c.home.closeCta}
+            </ArrowLink>
           </div>
         </div>
       </section>
-      <FinalCta lang={lang} />
     </main>
   );
 }
 
 export function SolutionsPage({ lang }: { lang: Locale }) {
   const c = getCopy(lang);
-  const visuals = [
-    <div key="assistants" className="solution-visual assistant-visual">
-      <span className="visual-chip">01</span>
-      <div className="query-line">
-        {lang === "fa" ? "پرسش از دانش مجاز" : "ASK APPROVED KNOWLEDGE"}
-        <span>↗</span>
-      </div>
-      <div className="source-lines">
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="answer-line">
-        <span className="answer-dot" />
-        {lang === "fa" ? "پاسخ با منبع" : "ANSWER WITH SOURCE"}
-      </div>
-    </div>,
-    <div key="analytics" className="solution-visual analytics-visual">
-      <span className="visual-chip">02</span>
-      <div className="analytics-bars" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <i />
-        <i />
-        <i />
-      </div>
-      <div className="visual-axis">
-        <span>{lang === "fa" ? "شاخص تعریف‌شده" : "DEFINED METRIC"}</span>
-        <span>
-          {lang === "fa" ? "جزئیات قابل بررسی" : "INSPECTABLE DETAIL"}
-        </span>
-      </div>
-    </div>,
-    <div key="decisions" className="solution-visual decision-visual">
-      <span className="visual-chip">03</span>
-      <div className="decision-path">
-        <span>{lang === "fa" ? "فرض" : "INPUT"}</span>
-        <i />
-        <span>{lang === "fa" ? "سناریو" : "SCENARIO"}</span>
-        <i />
-        <span>{lang === "fa" ? "اقدام" : "ACTION"}</span>
-      </div>
-    </div>,
-  ];
   return (
-    <main id="main">
+    <main id="main" className="solutions-page">
       <section className="interior-hero solutions-hero">
-        <div className="container interior-hero-grid">
-          <div>
-            <span className="eyebrow">{c.nav[1]} / 01—03</span>
-            <h1>{c.solutions.title}</h1>
+        <div className="container">
+          <span className="eyebrow">{c.nav[1]}</span>
+          <h1>{c.solutions.title}</h1>
+          <div className="solutions-intro">
             <p>{c.solutions.lead}</p>
-          </div>
-          <div
-            className="solution-toc"
-            aria-label={
-              lang === "fa" ? "بخش‌های راهکارها" : "Solutions sections"
-            }
-          >
-            {c.solutions.items.map((item, i) => (
-              <a key={item.id} href={`#${item.id}`}>
-                <span>0{i + 1}</span>
-                {item.title}
-                <span aria-hidden="true">↓</span>
-              </a>
-            ))}
+            <nav
+              className="solution-toc"
+              aria-label={
+                lang === "fa" ? "بخش‌های راهکارها" : "Solutions sections"
+              }
+            >
+              {c.solutions.items.map((item, i) => (
+                <a key={item.id} href={`#${item.id}`}>
+                  <span>{number(i + 1, lang)}</span>
+                  {item.title}
+                  <span aria-hidden="true">↓</span>
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
       </section>
@@ -304,27 +256,13 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
           className={`solution-section section-pad solution-section--${i + 1}`}
         >
           <div className="container">
-            <SectionIndex value={`0${i + 1}`}>{item.title}</SectionIndex>
+            <SectionIndex value={number(i + 1, lang)}>
+              {lang === "fa" ? "پروندهٔ راهکار" : "SOLUTION BRIEF"}
+            </SectionIndex>
             <div className="solution-main">
               <div className="solution-copy">
-                <Reveal>
-                  <h2>{item.title}</h2>
-                </Reveal>
+                <h2>{item.title}</h2>
                 <p className="large-copy">{item.intro}</p>
-                <div className="solution-details">
-                  <div>
-                    <h3>{c.solutions.labels[0]}</h3>
-                    <p>{item.examples}</p>
-                  </div>
-                  <div>
-                    <h3>{c.solutions.labels[1]}</h3>
-                    <p>{item.inputs}</p>
-                  </div>
-                  <div>
-                    <h3>{c.solutions.labels[2]}</h3>
-                    <p>{item.output}</p>
-                  </div>
-                </div>
                 <ArrowLink
                   href={href(lang, "contact")}
                   className="button button-outline"
@@ -332,7 +270,23 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
                   {item.cta}
                 </ArrowLink>
               </div>
-              <Reveal className="visual-reveal">{visuals[i]}</Reveal>
+              <div className="solution-product">
+                {i === 0 ? (
+                  <AssistantPreview lang={lang} />
+                ) : i === 1 ? (
+                  <DashboardPreview lang={lang} />
+                ) : (
+                  <ReportPanel lang={lang} stage={5} />
+                )}
+              </div>
+            </div>
+            <div className="solution-details">
+              {[item.examples, item.inputs, item.output].map((text, j) => (
+                <div key={text}>
+                  <h3>{c.solutions.labels[j]}</h3>
+                  <p>{text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -345,7 +299,6 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
           <p>{c.solutions.closing}</p>
         </div>
       </section>
-      <FinalCta lang={lang} />
     </main>
   );
 }
@@ -353,15 +306,17 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
 export function DemosPage({ lang }: { lang: Locale }) {
   const c = getCopy(lang);
   return (
-    <main id="main">
+    <main id="main" className="demos-page">
       <section className="interior-hero demos-hero">
         <div className="container">
-          <span className="eyebrow">{c.nav[2]} / 02</span>
+          <span className="eyebrow">
+            {lang === "fa" ? "آزمایشگاه ایده‌ها" : "THE CONCEPT LAB"}
+          </span>
           <h1>{c.demos.title}</h1>
           <p>{c.demos.lead}</p>
-          <div className="demo-hero-line" aria-hidden="true">
-            <span />
-            <span />
+          <div className="lab-index">
+            <a href="#dashboard">{c.demos.dashboard.title} ↓</a>
+            <a href="#assistant">{c.demos.assistant.title} ↓</a>
           </div>
         </div>
       </section>
@@ -369,63 +324,42 @@ export function DemosPage({ lang }: { lang: Locale }) {
         {(["dashboard", "assistant"] as DemoId[]).map((id, i) => {
           const item = c.demos[id],
             settings = demos[id];
-          const validUrl = settings.url && /^https:\/\//.test(settings.url);
-          const canLaunch = settings.status !== "planned" && validUrl;
+          const canLaunch =
+            settings.status !== "planned" &&
+            settings.url &&
+            /^https:\/\//.test(settings.url);
           return (
-            <section className="demo-entry" key={id} id={id}>
+            <section
+              className={`demo-entry demo-entry--${id}`}
+              key={id}
+              id={id}
+            >
               <div className="demo-entry-heading">
-                <span className="demo-ordinal">0{i + 1} / 02</span>
+                <span className="demo-ordinal">
+                  {number(i + 1, lang)} / {number(2, lang)}
+                </span>
                 <span className="status-pill">
                   {c.common.status[settings.status]}
                 </span>
               </div>
               <div className="demo-entry-grid">
-                <div>
-                  <Reveal>
-                    <h2>{item.title}</h2>
-                  </Reveal>
+                <div className="demo-description">
+                  <h2>{item.title}</h2>
                   <p className="large-copy">{item.summary}</p>
                   <div className="demo-prompts">
                     <h3>{c.demos.promptLabel}</h3>
-                    {item.prompts.map((prompt) => (
-                      <blockquote key={prompt}>“{prompt}”</blockquote>
+                    {item.prompts.map((p) => (
+                      <blockquote key={p}>{p}</blockquote>
                     ))}
                   </div>
                 </div>
-                <Reveal className="visual-reveal">
-                  <div
-                    className={`demo-art demo-art--${id}`}
-                    role="img"
-                    aria-label={c.common.sample}
-                  >
-                    <span className="art-sample">{c.common.sample}</span>
-                    {id === "dashboard" ? (
-                      <>
-                        <div className="art-chart">
-                          <i />
-                          <i />
-                          <i />
-                          <i />
-                          <i />
-                        </div>
-                        <div className="art-lines">
-                          <span />
-                          <span />
-                          <span />
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="art-question">?</div>
-                        <div className="art-answer">
-                          <i />
-                          <i />
-                          <i />
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </Reveal>
+                <div>
+                  {id === "dashboard" ? (
+                    <DashboardPreview lang={lang} />
+                  ) : (
+                    <AssistantPreview lang={lang} />
+                  )}
+                </div>
               </div>
               <div className="demo-foot">
                 <div>
@@ -439,7 +373,7 @@ export function DemosPage({ lang }: { lang: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {c.common.demoCta[settings.status]} ↗
+                    {c.common.demoCta[settings.status]}
                   </a>
                 ) : (
                   <ArrowLink
@@ -455,7 +389,6 @@ export function DemosPage({ lang }: { lang: Locale }) {
         })}
         <p className="demo-disclaimer">{c.demos.note}</p>
       </div>
-      <FinalCta lang={lang} />
     </main>
   );
 }
@@ -463,20 +396,29 @@ export function DemosPage({ lang }: { lang: Locale }) {
 export function AboutPage({ lang }: { lang: Locale }) {
   const c = getCopy(lang);
   return (
-    <main id="main">
+    <main id="main" className="about-page">
       <section className="interior-hero about-hero">
         <div className="container about-hero-grid">
           <div>
-            <span className="eyebrow">{c.nav[3]} / VIRADATA</span>
+            <span className="eyebrow">{c.nav[3]} / ViraData</span>
             <h1>{c.about.title}</h1>
             <p>{c.about.lead}</p>
           </div>
-          <div className="about-symbol">
-            <Image src="/logo-1.png" alt="" width={500} height={500} />
-            <span>
+          <div className="practice-file">
+            <div className="practice-file-header">
+              <Image src={site.logoPath} alt="" width={80} height={80} />
+              <span>
+                {lang === "fa"
+                  ? "یادداشت روش همکاری"
+                  : "A NOTE ON OUR PRACTICE"}
+              </span>
+            </div>
+            <MethodLedger lang={lang} />
+            <span className="practice-signature">
+              ViraData /{" "}
               {lang === "fa"
-                ? "از پیچیدگی تا وضوح"
-                : "FROM COMPLEXITY TO CLARITY"}
+                ? "از درخواست تا تصمیم"
+                : "From request to decision"}
             </span>
           </div>
         </div>
@@ -484,14 +426,16 @@ export function AboutPage({ lang }: { lang: Locale }) {
       <section className="about-method section-pad">
         <div className="container about-method-grid">
           <div>
-            <SectionIndex value="01">{c.about.howTitle}</SectionIndex>
+            <SectionIndex value={number(1, lang)}>
+              {c.about.howTitle}
+            </SectionIndex>
             <h2>{c.about.howTitle}</h2>
             <p className="large-copy">{c.about.howBody}</p>
           </div>
           <div className="principles">
             {c.about.principles.map(([title, body], i) => (
               <div key={title}>
-                <span>0{i + 1}</span>
+                <span>{number(i + 1, lang)}</span>
                 <h3>{title}</h3>
                 <p>{body}</p>
               </div>
@@ -501,7 +445,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
       </section>
       <section className="about-team">
         <div className="container">
-          <SectionIndex value="02">
+          <SectionIndex value={number(2, lang)}>
             {lang === "fa" ? "همکاری" : "THE PRACTICE"}
           </SectionIndex>
           <p>{c.about.team}</p>
@@ -513,7 +457,6 @@ export function AboutPage({ lang }: { lang: Locale }) {
           </ArrowLink>
         </div>
       </section>
-      <FinalCta lang={lang} />
     </main>
   );
 }
@@ -521,18 +464,29 @@ export function AboutPage({ lang }: { lang: Locale }) {
 export function ContactPage({ lang }: { lang: Locale }) {
   const c = getCopy(lang);
   return (
-    <main id="main">
+    <main id="main" className="contact-page">
       <section className="interior-hero contact-hero">
         <div className="container contact-hero-grid">
           <div>
-            <span className="eyebrow">{c.nav[4]} / 01</span>
+            <span className="eyebrow">{c.nav[4]}</span>
             <h1>{c.contact.title}</h1>
             <p>{c.contact.lead}</p>
-            <div className="contact-decoration" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
+            <ol className="contact-prompts">
+              {(lang === "fa"
+                ? [
+                    "چه تصمیمی باید روشن‌تر شود؟",
+                    "داده‌ها امروز کجا هستند؟",
+                    "چه خروجی‌ای برای شما قابل استفاده است؟",
+                  ]
+                : [
+                    "Which decision needs more clarity?",
+                    "Where does your data live today?",
+                    "What would a useful outcome look like?",
+                  ]
+              ).map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ol>
           </div>
           <ContactForm lang={lang} />
         </div>

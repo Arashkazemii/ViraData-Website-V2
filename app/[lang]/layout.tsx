@@ -1,10 +1,8 @@
 import "@/app/globals.css";
+import "@/app/experience.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
-import "@fontsource/vazirmatn/400.css";
-import "@fontsource/vazirmatn/600.css";
-import "@fontsource/vazirmatn/700.css";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MotionSystem } from "@/components/motion-system";

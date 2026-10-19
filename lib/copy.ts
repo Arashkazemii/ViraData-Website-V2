@@ -153,7 +153,7 @@ const copy = {
           "درآمد، هزینه و سود را نشان بده و تغییرات مهم را مشخص کن",
         ],
         limits:
-          "داده نمایشی است. اگر API تفسیر زبان طبیعی هنوز فعال نیست، درخواست‌های نمونه با مفسر محلی تفسیر می‌شوند.",
+          "این پیش‌نمایش با دادهٔ ساختگی و حالت‌های از پیش تعریف‌شده کار می‌کند. تفسیر آزاد درخواست، اتصال AI یا پایگاه داده ندارد؛ دموی اصلی در حال آماده‌سازی است.",
       },
       assistant: {
         title: "دستیار هوش مصنوعی",
@@ -394,7 +394,7 @@ const copy = {
           "Show revenue, cost, and profit, and highlight important changes",
         ],
         limits:
-          "Data is synthetic. If the natural-language API is not live, sample requests are interpreted locally.",
+          "This preview uses synthetic data and predefined views. It has no free-text interpretation, AI, or database connection; the full demo is in preparation.",
       },
       assistant: {
         title: "AI assistant",

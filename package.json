@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@fontsource/inter": "latest",
-    "@fontsource/vazirmatn": "latest",
     "motion": "latest",
     "next": "latest",
     "react": "latest",

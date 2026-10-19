@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { href, pages, site, type Locale } from "@/lib/config";
 import { getCopy } from "@/lib/copy";
+import { MotionToggle } from "./motion-system";
 
 export function Shell({
   lang,
@@ -46,6 +47,14 @@ export function Shell({
             </span>
           </Link>
           <nav
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                setOpen(false);
+                document
+                  .querySelector<HTMLButtonElement>(".menu-button")
+                  ?.focus();
+              }
+            }}
             className={`site-nav ${open ? "site-nav--open" : ""}`}
             id="main-nav"
             aria-label={lang === "fa" ? "ناوبری اصلی" : "Main navigation"}
@@ -74,6 +83,7 @@ export function Shell({
             </Link>
           </nav>
           <div className="header-actions">
+            <MotionToggle lang={lang} />
             <a
               className="language-link"
               href={alternate}

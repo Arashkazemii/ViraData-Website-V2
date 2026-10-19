@@ -1,6 +1,5 @@
 import "./globals.css";
 import "@fontsource/inter/400.css";
-import "@fontsource/vazirmatn/400.css";
 import Link from "next/link";
 import type { Metadata } from "next";
 

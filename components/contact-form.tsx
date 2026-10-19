@@ -7,6 +7,21 @@ import { getCopy } from "@/lib/copy";
 export function ContactForm({ lang }: { lang: Locale }) {
   const c = getCopy(lang).contact;
   const enabled = Boolean(site.contactEmail);
+  if (!enabled)
+    return (
+      <div className="contact-unavailable">
+        <span className="eyebrow">
+          {lang === "fa" ? "وضعیت ارتباط" : "CONTACT AVAILABILITY"}
+        </span>
+        <h2>
+          {lang === "fa"
+            ? "راه ارتباطی در حال آماده‌سازی است."
+            : "Our contact channel is being prepared."}
+        </h2>
+        <p role="status">{c.unavailable}</p>
+        <p className="privacy-note">{c.privacy}</p>
+      </div>
+    );
   function invalid(
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     field: "name" | "email" | "message",
