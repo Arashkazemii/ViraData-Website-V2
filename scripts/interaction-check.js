@@ -31,16 +31,9 @@ async (page) => {
     lang: await page.locator("html").getAttribute("lang"),
     dir: await page.locator("html").getAttribute("dir"),
   };
-  await page.getByRole("button", { name: "Pause motion" }).click();
-  result.pause = {
-    pressed: await page.locator(".motion-toggle").getAttribute("aria-pressed"),
-    data: await page.locator("body").getAttribute("data-motion-paused"),
-  };
+  result.motionControlRemoved = await page.locator(".motion-toggle").count() === 0;
   await page.emulateMedia({ reducedMotion: "reduce" });
-  result.reduced = {
-    toggleVisible: await page.locator(".motion-toggle").isVisible(),
-    data: await page.locator("body").getAttribute("data-motion-paused"),
-  };
+  result.reduced = await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches);
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("http://localhost:3000/en/demos");
   result.demos = {

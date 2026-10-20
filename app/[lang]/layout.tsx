@@ -1,8 +1,7 @@
 import "@/app/globals.css";
 import "@/app/experience.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+import "@/app/polish.css";
+import "@fontsource-variable/manrope";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MotionSystem } from "@/components/motion-system";
@@ -30,7 +29,7 @@ export default async function LocaleLayout({
       data-scroll-behavior="smooth"
     >
       <body>
-        <MotionSystem lang={lang}>
+        <MotionSystem>
           <Shell lang={lang}>{children}</Shell>
         </MotionSystem>
       </body>

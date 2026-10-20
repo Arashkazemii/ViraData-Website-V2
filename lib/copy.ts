@@ -11,8 +11,6 @@ const copy = {
       missing: "این صفحه پیدا نشد.",
       menu: "فهرست",
       close: "بستن فهرست",
-      pause: "توقف حرکت",
-      play: "ادامه حرکت",
       footer:
         "ویرا دیتا؛ طراحی و اجرای راهکارهای داده و هوش مصنوعی برای مسئله‌های واقعی کسب‌وکار.",
       contactSoon: "راه ارتباط ایمیلی به‌زودی در این صفحه فعال می‌شود.",
@@ -197,15 +195,8 @@ const copy = {
         name: "نام و نام خانوادگی",
         email: "ایمیل",
         organization: "نام سازمان یا کسب‌وکار",
-        area: "موضوع گفت‌وگو",
         message: "مسئله یا ایده‌تان را شرح دهید",
       },
-      options: [
-        "دستیار هوش مصنوعی",
-        "تحلیل داده و داشبورد",
-        "تصمیم‌یار و خودکارسازی",
-        "هنوز مطمئن نیستم",
-      ],
       privacy:
         "برای شروع، اطلاعات محرمانه یا داده شخصی حساس را در این فرم ننویسید.",
       validation: {
@@ -252,8 +243,6 @@ const copy = {
       missing: "We couldn't find that page.",
       menu: "Open menu",
       close: "Close menu",
-      pause: "Pause motion",
-      play: "Resume motion",
       footer:
         "ViraData designs and builds data and AI solutions for real business problems.",
       contactSoon: "Email contact will be available here soon.",
@@ -438,15 +427,8 @@ const copy = {
         name: "Full name",
         email: "Email",
         organization: "Organization or business",
-        area: "Area of interest",
         message: "Describe your challenge or idea",
       },
-      options: [
-        "AI assistant",
-        "Analytics and dashboards",
-        "Decision support and automation",
-        "I'm not sure yet",
-      ],
       privacy:
         "Please do not include confidential information or sensitive personal data in this initial message.",
       validation: {

@@ -132,9 +132,8 @@ export function ReportPanel({
                       >
                         <motion.div
                           initial={false}
-                          animate={{
-                            width: `${(r[key] / current.sales) * 100}%`,
-                          }}
+                          style={{ width: `${(r[key] / current.sales) * 100}%`, originX: lang === "fa" ? 1 : 0 }}
+                          animate={{ scaleX: active ? [0.72, 1] : 1 }}
                           transition={transition}
                         />
                         <b>{n(r[key])}</b>
@@ -167,9 +166,8 @@ export function ReportPanel({
                     <span>{row.label}</span>
                     <motion.i
                       initial={false}
-                      animate={{
-                        width: `${(Math.abs(row.value) / (previous.profit + current.sales - previous.sales)) * 58}%`,
-                      }}
+                      style={{ width: `${(Math.abs(row.value) / (previous.profit + current.sales - previous.sales)) * 58}%`, originX: lang === "fa" ? 1 : 0 }}
+                      animate={{ scaleX: active ? [0.72, 1] : 1 }}
                       transition={transition}
                     />
                     <bdi>
@@ -285,7 +283,7 @@ export function DecisionStory({ lang }: { lang: Locale }) {
     offset: ["start center", "end center"],
   });
   const syncStage = useCallback(() => {
-    if (!active || !ref.current) return;
+    if (!enhanced || !ref.current) return;
     const focus =
       window.innerWidth <= 760
         ? window.innerHeight * 0.76
@@ -297,7 +295,7 @@ export function DecisionStory({ lang }: { lang: Locale }) {
       0,
     );
     setStage(index);
-  }, [active]);
+  }, [enhanced]);
   useMotionValueEvent(scrollYProgress, "change", syncStage);
   useEffect(() => {
     if (!enhanced || !ref.current) return;
@@ -309,11 +307,11 @@ export function DecisionStory({ lang }: { lang: Locale }) {
     // Report height and loaded fonts can move chapters without changing scrollY.
     const observer = new ResizeObserver(schedule);
     observer.observe(ref.current);
-    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
     schedule();
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
       cancelAnimationFrame(frame);
     };
   }, [enhanced, syncStage]);
@@ -397,10 +395,10 @@ export function HeroReport({ lang }: { lang: Locale }) {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, -2]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 35]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, -1]);
   return (
-    <div className="hero-report-wrap" ref={ref}>
+    <motion.div className="hero-report-wrap" ref={ref} style={active ? { y, rotate } : undefined}>
       <div className="request-slip">
         <span>{lang === "fa" ? "پرسش مدیر" : "THE MANAGEMENT QUESTION"}</span>
         <strong>{c.question}</strong>
@@ -409,13 +407,10 @@ export function HeroReport({ lang }: { lang: Locale }) {
           <span aria-hidden="true">↓</span>
         </a>
       </div>
-      <motion.div
-        className="hero-report"
-        style={active ? { y, rotate } : undefined}
-      >
+      <div className="hero-report">
         <ReportPanel lang={lang} />
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 

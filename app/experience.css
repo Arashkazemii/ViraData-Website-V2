@@ -48,25 +48,6 @@ html[lang="fa"] .hero-baseline {
 .header-actions {
   gap: 12px;
 }
-.motion-toggle {
-  position: static;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  box-shadow: none;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  background: transparent;
-  flex: none;
-}
-.motion-toggle span:last-child {
-  display: none;
-}
-.motion-toggle:hover {
-  background: #ffffff10;
-}
 .language-link {
   min-width: 44px;
   min-height: 44px;
@@ -1789,8 +1770,5 @@ html[lang="fa"] .contact-prompts {
   .request-slip,
   .practice-file {
     transform: none !important;
-  }
-  .motion-toggle {
-    display: none;
   }
 }

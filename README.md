@@ -43,7 +43,7 @@ For `viradataco.com`, use `NEXT_PUBLIC_SITE_ORIGIN=https://viradataco.com` only 
 ## Structure and edits
 
 - `lib/copy.ts`: all bilingual page copy, navigation, accessibility labels, and metadata text. The supplied `ViraData-Website-Content-v1.md` remains the editorial reference. The site adds short section labels and conceptual visual labels, without changing material claims.
-- `components/pages.tsx`: page compositions. `components/motion-system.tsx`: hydration-safe motion preferences and header pause control. `components/decision-story.tsx`: scroll narrative and product previews. `app/globals.css` and `app/experience.css`: shared styles and the redesigned experience.
+- `components/pages.tsx`: page compositions. `components/motion-system.tsx`: hydration-safe motion preferences. `components/decision-story.tsx`: scroll narrative and product previews. `app/globals.css` and `app/experience.css`: structural styles; `app/polish.css`: the current visual layer. `components/signature-motion.tsx`: hero atmosphere and pointer response.
 - `lib/config.ts`: demo status and URLs, plus origin and logo settings.
 - `public/logo-1.png`: supplied symbol used in the header and About visual. `public/logo-2.png`: supplied symbol/wordmark image used in the social image. Both are dark transparent assets. Confirm which is the approved final version before launch. `NEXT_PUBLIC_LOGO_PATH` changes the header mark; update `app/social-image/route.tsx` and the About visual if replacing the artwork. No new logo was created.
 
@@ -72,37 +72,47 @@ Each localized route has distinct metadata and rendered HTML. The configured ori
 
 Confirm final logo variant and usage rights; final domain and hosting; working contact email or endpoint; public demo URLs and status. Search Console setup follows deployment. No public deployment is included here.
 
-## Design sources
+## Design and motion
 
-Motion is installed from its [official React package](https://motion.dev/docs/react-installation). English Inter remains bundled from Fontsource. Persian uses the owner-provided proprietary IRANYekanX FaNum variable WOFF2 at `public/fonts/iranyekan/IRANYekanXVFaNumVF.woff2` (actual `wght` axis: 100–1000), with `font-display: swap`, a Tahoma/Arial fallback, and synthetic font styles disabled. The supplied font package and license note are in `public/fonts/`; its `FontLicense.txt` still has a blank license-code placeholder, which the owner must resolve before publication.
+The current design uses a consistent navy palette, silver text, blue accents, self-hosted Manrope for English, and the supplied IRANYekanX FaNum variable font for Persian. See [DESIGN.md](DESIGN.md) for the design direction and references. The original content, routes, logo, demo status, metadata, and contact delivery behavior are preserved.
 
-## Request-to-decision redesign
+- [Motion](https://motion.dev/docs/react-scroll-animations) drives word entrances, route entrances, scroll reveals, the six-scene data story, report transitions, chart transforms, and small pointer responses. Scrolling remains native.
+- [React Bits Threads](https://reactbits.dev/backgrounds/threads) supplies the hero's flowing signal. Its inspected TS/CSS source is in `components/react-bits/`, with the upstream license. It adds no runtime dependency. Local adaptations support live reduced-motion changes and React's ref lifecycle.
+- Continuous work stops outside the viewport and in hidden tabs. There is no manual motion pause control. Reduced motion presents all six static scenes; short screens also use static scenes. All content is available in server-rendered HTML without JavaScript.
+- Accessible headings retain complete text for screen readers. Persian words retain shaping, RTL order, and independent sizing. The mobile menu supports Escape, focus return, and outside dismissal.
+- The header, services, report, process, previews, form, and footer share one material palette and consistent corner radii.
 
-- `lib/story-data.ts`: the single synthetic fixture and derived calculations shared by Home, Solutions, and Demos. Amounts are **millions of tomans**. Two equal-length fictional periods; three products; all purchased units are sold. Inventory, tax, interest and depreciation are outside this deliberately simplified model.
-- `lib/story-copy.ts`: bilingual story, report labels, assumptions and fictional purchasing document. Original editorial copy remains in `lib/copy.ts`.
-- `components/decision-story.tsx`: six report states (source rows, metric definition, comparative report, profit reconciliation, product detail, next investigation), shared report UI, two distinct product previews, and a method ledger.
-- `app/experience.css`: the redesign layer over the existing shared CSS. Persian headings have independent sizing and no negative tracking.
-- Normal scrolling selects report states, forwards or backwards. Stage anchors support keyboard navigation and equivalent language links. The hero report also responds subtly to scroll; selected method-ledger rows progress as the document enters view. There are no infinite animation loops.
-- Pause and reduced motion display all six static scenes. Screens at most 700px tall also use the static layout. All scenes and primary marketing copy are rendered into HTML before JavaScript. Motion preferences use a server-consistent first render to avoid hydration mismatches. The motion control is in the fixed header.
-- Dashboard preview buttons select predefined report/insight/detail views. Assistant citation opens a fictional source passage. Neither is a live AI demo, interpreter, or database-backed product. Both demo statuses remain `planned` in `lib/config.ts`.
-- Contact uses a bilingual form with server validation, a honeypot, request-size limit, rate limit, and authenticated SMTP delivery.
+The proprietary Persian font and its license note remain in `public/fonts/`. Its blank license-code placeholder still needs the owner's resolution before publication.
 
-### Component decision and copy changes
+## Data story and previews
 
-Reviewed the current [React Bits Stepper](https://reactbits.dev/components/stepper) and [installation instructions](https://reactbits.dev/get-started/installation). Stepper's form-like next/back progression would duplicate the scene state and require adaptation for native-scroll tracking, SSR-visible chapters, and reduced-motion reading. A focused Motion implementation using [useScroll](https://motion.dev/docs/react-use-scroll) fits those constraints directly. No React Bits component was installed or copied. No project dependency was added for this redesign; Prettier was run as a temporary formatting tool.
+`lib/story-data.ts` is the single synthetic fixture shared by Home, Solutions, and Demos. Amounts are millions of tomans. Two fictional periods, three products, and the assumption that all purchases are sold. Inventory, tax, interest, and depreciation are excluded. `lib/story-copy.ts` contains bilingual labels, assumptions, and the fictional source passage.
 
-The new fictional financial scenario and purchasing passage are illustrative additions, not client claims. The home primary action now opens the story; the original solutions/contact actions remain. Repeated closing CTAs were replaced with page-specific endings. Dashboard limitation copy was corrected in both languages: this preview has predefined views, **no local natural-language interpreter**, AI, or database connection. No original business claims were strengthened.
+`components/decision-story.tsx` contains six report states: source rows, metric definition, comparative report, profit reconciliation, product detail, and next investigation. Dashboard buttons select predefined report/insight/detail views. Assistant citations open the fictional source passage. Neither preview is connected to AI or a database. Both public demo statuses remain `planned`.
 
-### Verification
+## Verify
 
 ```powershell
-node scripts/check-story.mjs
 npm.cmd run typecheck
 npm.cmd run lint
+npm.cmd test
+node --import tsx scripts/check-story.mjs
 npm.cmd run build
-playwright-cli -s=viradata_review open --browser=chrome http://localhost:3000/fa
-playwright-cli -s=viradata_review run-code --filename=scripts/browser-review.js
+npm.cmd run start -- --port 3002
+playwright-cli -s=viradata_review open --browser=chrome http://localhost:3002/en
+playwright-cli -s=viradata_review resize 1440 1000
+playwright-cli -s=viradata_review run-code --filename=scripts/redesign-review.js
+playwright-cli -s=viradata_review resize 390 844
+playwright-cli -s=viradata_review run-code --filename=scripts/redesign-review.js
+playwright-cli -s=viradata_review run-code --filename=scripts/redesign-interactions.js
+playwright-cli -s=viradata_review run-code --filename=scripts/redesign-motion.js
 playwright-cli -s=viradata_review close
 ```
 
-The fixture check verifies row totals, period totals, percentage changes, the complete profit bridge and the largest product cost contribution. The browser review visits all ten routes at 1440, 768, 390 and 360px; checks HTTP status, H1 and overflow; records console errors and screenshots. Additional manual browser checks cover time-sampled transitions, reduced motion, pause, short screens, keyboard navigation, source disclosure, language/section preservation, and production HTML without JavaScript. Local captures are under ignored `screenshots/`, including `final-fa-scene-0.png` through `final-fa-scene-5.png` and `final-fa-detail-mobile.png`.
+The browser review uses the open page's origin. Desktop mode checks 1440, 1024, and 768px; mobile mode checks 390 and 360px. It visits all ten routes, checks HTTP status, headings, RTL/LTR, page and panel overflow, and browser errors. Screenshots are saved under ignored `screenshots/`.
+
+Additional review covers all report stages, menu and language navigation, live reduced motion, animation frame changes, short screens, source disclosure, and mocked contact success/failure. No real contact email is sent by browser QA.
+
+## Backup and review
+
+The verified original source backup is `backups/pre-redesign-20261020-002456.zip`. Its embedded manifest records the original Git HEAD. Dependencies, generated output, screenshots, caches, and Git metadata are excluded. Backups stay local and are ignored by Git. The approved redesign is the latest version on main. No public deployment was performed.

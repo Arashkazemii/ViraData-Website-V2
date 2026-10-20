@@ -4,8 +4,6 @@ import { useState, type FormEvent } from "react";
 import { type Locale } from "@/lib/config";
 import { getCopy } from "@/lib/copy";
 
-const topics = ["assistant", "analytics", "automation", "other"] as const;
-
 export function ContactForm({ lang }: { lang: Locale }) {
   const c = getCopy(lang).contact;
   const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -64,15 +62,6 @@ export function ContactForm({ lang }: { lang: Locale }) {
             <label htmlFor="contact-phone">
               {fa ? "شماره تماس" : "Phone"}
               <input id="contact-phone" name="phone" type="tel" dir="ltr" autoComplete="tel" maxLength={40} pattern="[+0-9(). -]*" />
-            </label>
-            <label htmlFor="contact-topic">
-              {fa ? "موضوع درخواست" : "Request topic"}<span aria-hidden="true"> *</span>
-              <select id="contact-topic" name="topic" defaultValue="" required>
-                <option value="" disabled>{fa ? "انتخاب کنید" : "Select a topic"}</option>
-                {topics.map((topic, index) => (
-                  <option key={topic} value={topic}>{c.options[index]}</option>
-                ))}
-              </select>
             </label>
           </div>
           <label className="message-label" htmlFor="contact-message">

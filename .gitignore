@@ -7,3 +7,4 @@ out/
 .playwright-cli/
 screenshots/
 graphify-out/
+backups/

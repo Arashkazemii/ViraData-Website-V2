@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ContactForm } from "./contact-form";
 import { HeroWords, Reveal } from "./motion-system";
+import { HeroAtmosphere, Magnetic } from "./signature-motion";
+import { ArrowUpRight, ChartBar, ChatsCircle, TreeStructure, ShieldCheck, Stack, Target } from "@phosphor-icons/react/dist/ssr";
 import {
   DecisionStory,
   HeroReport,
@@ -27,20 +29,16 @@ function ArrowLink({
   return (
     <Link className={`arrow-link ${className}`} href={to}>
       {children}
-      <span aria-hidden="true">↗</span>
+      <ArrowUpRight size={18} aria-hidden="true" />
     </Link>
   );
 }
-function SectionIndex({
-  value,
-  children,
-}: {
-  value: string;
+function SectionIndex({ children }: {
   children: React.ReactNode;
 }) {
   return (
     <div className="section-index">
-      <span>{value}</span>
+      <span className="section-marker" aria-hidden="true" />
       <span>{children}</span>
     </div>
   );
@@ -52,6 +50,7 @@ export function HomePage({ lang }: { lang: Locale }) {
   return (
     <main id="main" className="home-page">
       <section className="home-hero">
+        <HeroAtmosphere />
         <div className="container hero-inner">
           <div className="hero-copy">
             <span className="eyebrow hero-eyebrow">{c.home.eyebrow}</span>
@@ -60,31 +59,66 @@ export function HomePage({ lang }: { lang: Locale }) {
             </h1>
             <p className="hero-lead">{c.home.lead}</p>
             <div className="hero-actions">
-              <ArrowLink href="#story" className="button button-primary">
+              <Magnetic><ArrowLink href="#story" className="button button-primary">
                 {s.openStory}
-              </ArrowLink>
+              </ArrowLink></Magnetic>
               <ArrowLink href={href(lang, "solutions")}>
                 {c.home.primary}
               </ArrowLink>
             </div>
-            <ArrowLink href={href(lang, "contact")} className="hero-contact">
-              {c.home.secondary}
-            </ArrowLink>
           </div>
           <HeroReport lang={lang} />
         </div>
-        <div className="container hero-baseline">
-          <span>{s.label}</span>
-          <span>{s.instruction} ↓</span>
+      </section>
+      <div className="confidence-strip container">
+        <span><Stack size={20} aria-hidden="true" />{lang === "fa" ? "متناسب با جریان کار شما" : "Built around your workflow"}</span>
+        <span><ShieldCheck size={20} aria-hidden="true" />{lang === "fa" ? "شفاف و قابل بررسی" : "Traceable by design"}</span>
+        <span><Target size={20} aria-hidden="true" />{lang === "fa" ? "از پرسش تا اقدام" : "From question to action"}</span>
+      </div>
+      <section className="families-section section-pad">
+        <div className="container">
+          <SectionIndex>
+            {c.home.familiesLabel}
+          </SectionIndex>
+          <Reveal className="section-heading-row">
+            <h2>
+              {lang === "fa"
+                ? "از دانش تا اقدام."
+                : "From knowledge to action."}
+            </h2>
+            <p>
+              {lang === "fa"
+                ? "سه مسیر، هرکدام متناسب با مسئله و داده شما."
+                : "Three paths, each shaped by your problem and data."}
+            </p>
+          </Reveal>
+          <div className="family-list">
+            {c.home.families.map((item, i) => (
+              <Reveal key={item.title} delay={i * 0.08} className={`family-card family-card--${i}`}>
+                <Link
+                  className="family-row"
+                  href={`${href(lang, "solutions")}#${["assistants", "analytics", "decisions"][i]}`}
+                >
+                  <span className="family-icon" aria-hidden="true">
+                    {i === 0 ? <ChatsCircle size={30} weight="duotone" /> : i === 1 ? <ChartBar size={30} weight="duotone" /> : <TreeStructure size={30} weight="duotone" />}
+                  </span>
+                  <div className="family-title">
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
+                  <span className="family-arrow" aria-label={item.cta}>
+                    <ArrowUpRight size={22} aria-hidden="true" />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
       <DecisionStory lang={lang} />
       <section className="problem-section section-pad">
-        <div className="container problem-grid">
+        <Reveal className="container problem-grid">
           <div>
-            <SectionIndex value={number(1, lang)}>
-              {lang === "fa" ? "شناخت مسئله" : "THE STARTING POINT"}
-            </SectionIndex>
             <h2>{c.home.problemTitle}</h2>
           </div>
           <div className="problem-detail">
@@ -98,58 +132,17 @@ export function HomePage({ lang }: { lang: Locale }) {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="families-section section-pad">
-        <div className="container">
-          <SectionIndex value={number(2, lang)}>
-            {c.home.familiesLabel}
-          </SectionIndex>
-          <div className="section-heading-row">
-            <h2>
-              {lang === "fa"
-                ? "از دانش تا اقدام."
-                : "From knowledge to action."}
-            </h2>
-            <p>
-              {lang === "fa"
-                ? "سه مسیر، هرکدام متناسب با مسئله و داده شما."
-                : "Three paths, each shaped by your problem and data."}
-            </p>
-          </div>
-          <div className="family-list">
-            {c.home.families.map((item, i) => (
-              <Reveal key={item.title}>
-                <Link
-                  className="family-row"
-                  href={`${href(lang, "solutions")}#${["assistants", "analytics", "decisions"][i]}`}
-                >
-                  <span className="family-number">{number(i + 1, lang)}</span>
-                  <div className="family-title">
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </div>
-                  <span className="family-arrow" aria-label={item.cta}>
-                    ↗
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        </Reveal>
       </section>
       <section className="process-section section-pad">
         <div className="container process-editorial">
           <div>
-            <SectionIndex value={number(3, lang)}>
-              {lang === "fa" ? "روش همکاری" : "HOW WE WORK"}
-            </SectionIndex>
             <h2>{c.home.stepsTitle}</h2>
             <MethodLedger lang={lang} />
           </div>
           <div className="process-notes">
             {c.home.steps.map(([title, body], i) => (
-              <Reveal key={title}>
+              <Reveal key={title} delay={i * 0.05}>
                 <article>
                   <span>{number(i + 1, lang)}</span>
                   <h3>{title}</h3>
@@ -162,15 +155,12 @@ export function HomePage({ lang }: { lang: Locale }) {
       </section>
       <section className="demo-tease section-pad">
         <div className="container">
-          <div className="section-heading-row">
+          <Reveal className="section-heading-row">
             <div>
-              <span className="eyebrow">
-                {lang === "fa" ? "دو مسیر مستقل" : "TWO DISTINCT WORKSTREAMS"}
-              </span>
               <h2>{c.home.demosTitle}</h2>
             </div>
             <p>{c.home.demosBody}</p>
-          </div>
+          </Reveal>
           <div className="demo-gateways">
             {(["dashboard", "assistant"] as DemoId[]).map((id, i) => (
               <Link
@@ -203,9 +193,6 @@ export function HomePage({ lang }: { lang: Locale }) {
       </section>
       <section className="home-close section-pad">
         <div className="container">
-          <span className="eyebrow">
-            {lang === "fa" ? "حالا، مسئلهٔ شما" : "NOW, YOUR QUESTION"}
-          </span>
           <h2>{c.home.closeTitle}</h2>
           <div>
             <p>{c.home.closeBody}</p>
@@ -229,7 +216,7 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
       <section className="interior-hero solutions-hero">
         <div className="container">
           <span className="eyebrow">{c.nav[1]}</span>
-          <h1>{c.solutions.title}</h1>
+          <h1><HeroWords text={c.solutions.title} /></h1>
           <div className="solutions-intro">
             <p>{c.solutions.lead}</p>
             <nav
@@ -256,10 +243,10 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
           className={`solution-section section-pad solution-section--${i + 1}`}
         >
           <div className="container">
-            <SectionIndex value={number(i + 1, lang)}>
+            <SectionIndex>
               {lang === "fa" ? "پروندهٔ راهکار" : "SOLUTION BRIEF"}
             </SectionIndex>
-            <div className="solution-main">
+            <Reveal className="solution-main">
               <div className="solution-copy">
                 <h2>{item.title}</h2>
                 <p className="large-copy">{item.intro}</p>
@@ -279,15 +266,15 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
                   <ReportPanel lang={lang} stage={5} />
                 )}
               </div>
-            </div>
-            <div className="solution-details">
+            </Reveal>
+            <Reveal className="solution-details">
               {[item.examples, item.inputs, item.output].map((text, j) => (
                 <div key={text}>
                   <h3>{c.solutions.labels[j]}</h3>
                   <p>{text}</p>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
       ))}
@@ -312,7 +299,7 @@ export function DemosPage({ lang }: { lang: Locale }) {
           <span className="eyebrow">
             {lang === "fa" ? "آزمایشگاه ایده‌ها" : "THE CONCEPT LAB"}
           </span>
-          <h1>{c.demos.title}</h1>
+          <h1><HeroWords text={c.demos.title} /></h1>
           <p>{c.demos.lead}</p>
           <div className="lab-index">
             <a href="#dashboard">{c.demos.dashboard.title} ↓</a>
@@ -401,7 +388,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
         <div className="container about-hero-grid">
           <div>
             <span className="eyebrow">{c.nav[3]} / ViraData</span>
-            <h1>{c.about.title}</h1>
+            <h1><HeroWords text={c.about.title} /></h1>
             <p>{c.about.lead}</p>
           </div>
           <div className="practice-file">
@@ -426,7 +413,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
       <section className="about-method section-pad">
         <div className="container about-method-grid">
           <div>
-            <SectionIndex value={number(1, lang)}>
+            <SectionIndex>
               {c.about.howTitle}
             </SectionIndex>
             <h2>{c.about.howTitle}</h2>
@@ -445,7 +432,7 @@ export function AboutPage({ lang }: { lang: Locale }) {
       </section>
       <section className="about-team">
         <div className="container">
-          <SectionIndex value={number(2, lang)}>
+          <SectionIndex>
             {lang === "fa" ? "همکاری" : "THE PRACTICE"}
           </SectionIndex>
           <p>{c.about.team}</p>
@@ -469,7 +456,7 @@ export function ContactPage({ lang }: { lang: Locale }) {
         <div className="container contact-hero-grid">
           <div>
             <span className="eyebrow">{c.nav[4]}</span>
-            <h1>{c.contact.title}</h1>
+            <h1><HeroWords text={c.contact.title} /></h1>
             <p>{c.contact.lead}</p>
             <ol className="contact-prompts">
               {(lang === "fa"

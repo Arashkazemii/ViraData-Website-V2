@@ -9,7 +9,6 @@ const valid = {
   email: "ada@example.com",
   organization: "Analytical Engines",
   phone: "+1 555 123 4567",
-  topic: "analytics",
   message: "We need a clear dashboard for our team.",
 };
 const environment = {
@@ -21,11 +20,11 @@ const environment = {
   SMTP_FROM: "sender@example.com",
 };
 
-test("validates required fields and rejects invalid email, topic, and phone", () => {
+test("validates requests without a topic and rejects invalid required fields", () => {
   assert.deepEqual(validateContact(valid), valid);
   for (const patch of [
     { name: "A" }, { email: "bad\nBcc:evil@example.com" },
-    { topic: "unknown" }, { phone: "call me" }, { message: "short" },
+    { phone: "call me" }, { message: "short" },
   ]) assert.equal(validateContact({ ...valid, ...patch }), null);
 });
 
@@ -44,6 +43,8 @@ test("uses verified sender, visitor Reply-To, and accepts only intended recipien
   assert.equal(sent.from, environment.SMTP_FROM);
   assert.equal(sent.to, CONTACT_RECIPIENT);
   assert.equal(sent.replyTo, valid.email);
+  assert.equal(sent.subject, "ViraData contact request");
+  assert.doesNotMatch(sent.text, /Request topic/);
   assert.match(sent.html, /&lt;script&gt;/);
   assert.doesNotMatch(sent.html, /<script>/);
   assert.equal(await sendContactEmail(valid, { sendMail: async () => ({ accepted: ["other@example.com"] }) }, environment), false);

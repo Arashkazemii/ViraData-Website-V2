@@ -1453,28 +1453,6 @@ html[dir="rtl"] .family-row:hover .family-arrow {
 .footer-bottom a:hover {
   color: #fff;
 }
-.motion-toggle {
-  position: fixed;
-  inset-inline-end: 24px;
-  inset-block-end: 24px;
-  z-index: 80;
-  background: #e8e8e2;
-  color: #13243b;
-  border: 1px solid #8caad1;
-  box-shadow: 0 8px 30px #0004;
-  padding: 9px 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-}
-.motion-toggle:hover {
-  background: #fff;
-}
-.motion-icon {
-  width: 18px;
-  text-align: center;
-}
 .not-found {
   min-height: 80svh;
   padding-block: 200px 100px;
@@ -1732,10 +1710,6 @@ html[dir="rtl"] .family-row:hover .family-arrow {
   .footer-top {
     padding-block: 65px 40px;
   }
-  .motion-toggle {
-    inset-inline-end: 12px;
-    inset-block-end: 12px;
-  }
 }
 @media (max-width: 480px) {
   .container {
@@ -1808,14 +1782,6 @@ html[dir="rtl"] .family-row:hover .family-arrow {
   }
   .final-cta-inner {
     min-height: 450px;
-  }
-  .motion-toggle span:last-child {
-    display: none;
-  }
-  .motion-toggle {
-    width: 44px;
-    height: 44px;
-    justify-content: center;
   }
   .not-found {
     padding-block-start: 150px;
@@ -1938,19 +1904,6 @@ html[dir="rtl"] .data-field svg {
 .contact-panel--unavailable textarea {
   background: #edf0ef;
 }
-body[data-motion-paused="true"] *,
-body[data-motion-paused="true"] *:before,
-body[data-motion-paused="true"] *:after {
-  animation-play-state: paused !important;
-}
-body[data-motion-paused="true"] {
-  scroll-behavior: auto;
-}
-body[data-motion-paused="true"] .visual-reveal * {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1961,8 +1914,5 @@ body[data-motion-paused="true"] .visual-reveal * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .motion-toggle {
-    display: none;
   }
 }

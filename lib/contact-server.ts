@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 
 export const CONTACT_RECIPIENT = "vp.sales@viradataco.com";
-export const CONTACT_TOPICS = ["assistant", "analytics", "automation", "other"] as const;
 export const MAX_CONTACT_BYTES = 12_000;
 
 export type ContactInput = {
@@ -9,7 +8,6 @@ export type ContactInput = {
   email: string;
   organization: string;
   phone: string;
-  topic: (typeof CONTACT_TOPICS)[number];
   message: string;
 };
 
@@ -32,16 +30,14 @@ export function validateContact(value: unknown): ContactInput | null {
   const organization = clean(data.organization, 160);
   const phone = clean(data.phone, 40);
   const message = clean(data.message, 4000);
-  const topic = data.topic;
   if (
     !name || name.length < 2 ||
     !email || !emailPattern.test(email) ||
     organization === null || phone === null ||
     (phone && !phonePattern.test(phone)) ||
-    !CONTACT_TOPICS.includes(topic as ContactInput["topic"]) ||
     !message || message.length < 12
   ) return null;
-  return { name, email, organization, phone, topic: topic as ContactInput["topic"], message };
+  return { name, email, organization, phone, message };
 }
 
 export function escapeHtml(value: string): string {
@@ -75,13 +71,13 @@ export async function sendContactEmail(
   const fields = [
     ["Full name", input.name], ["Business email", input.email],
     ["Organization", input.organization || "—"], ["Phone", input.phone || "—"],
-    ["Request topic", input.topic], ["Message", input.message],
+    ["Message", input.message],
   ];
   const result = await sender.sendMail({
     from,
     to: CONTACT_RECIPIENT,
     replyTo: input.email,
-    subject: `ViraData contact request: ${input.topic}`,
+    subject: "ViraData contact request",
     text: fields.map(([label, value]) => `${label}: ${value}`).join("\n\n"),
     html: fields.map(([label, value]) =>
       `<p><strong>${label}:</strong> ${escapeHtml(value).replace(/\n/g, "<br>")}</p>`
