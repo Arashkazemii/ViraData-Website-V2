@@ -50,7 +50,7 @@ async (page) => {
   await page.route('**/api/contact', route => route.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"delivery_failed"}' }));
   await page.locator('[name="name"]').fill('Browser Review');
   await page.locator('[name="email"]').fill('review@example.com');
-  check('Request topic removed', await page.locator('[name="topic"]').count() === 0);
+  check('Contact form has no topic field', await page.locator('[name="topic"]').count() === 0);
   await page.locator('[name="message"]').fill('We need clearer reporting for our operations team.');
   await page.locator('button[type="submit"]').click();
   await page.locator('.contact-feedback[role="alert"]').waitFor();

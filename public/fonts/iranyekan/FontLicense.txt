@@ -1,7 +1,7 @@
 IRANYekanX fonts are considered a proprietary software.
 To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com 
 
-This set of fonts are used in this project under the license: (.....)
+This set of fonts are used in this project under the license: (21LDVTC6)
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 In case you use this set of fonts in a software product, write the license code in the specified place and place this file next to the fonts.
@@ -11,8 +11,13 @@ In case you use this set of fonts in a software product, write the license code 
 www.fontiran.com 
 مراجعه نماييد 
 اين مجموعه فونت تحت اجازه نامه 
-(.....)
+(21LDVTC6)
 در اين پروژه استفاده می شود
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-در صورت استفاده از این مجموعه فونت در یک محصول نرم افزاری‌ یا وب‌سایت کد ۶ رقمی لایسنس خود را در محل مشخص شده (.....) درج کنید و این فایل را در کنار فونت ها قرار دهید.
+در صورت استفاده از این مجموعه فونت در یک محصول نرم افزاری‌ یا وب‌سایت کد ۶ رقمی لایسنس خود را در محل مشخص شده (21LDVTC6) درج کنید و این فایل را در کنار فونت ها قرار دهید.
+
+
+Registered for: ViraData / ویرا دیتا
+Website: https://viradataco.com
+Official verification: https://fontiran.com/license/21LDVTC6

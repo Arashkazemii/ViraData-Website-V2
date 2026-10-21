@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/icon">
+  <title>مقایسه پالت‌های ویرا دیتا</title>
+  <style>
+    @font-face { font-family: Vira; src: url('/fonts/iranyekan/IRANYekanXVFaNumVF.woff2') format('woff2'); font-display: swap; }
+    :root { color-scheme: dark; font-family: Vira, Tahoma, sans-serif; background: #101419; color: #f0f3f4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, select { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid #b2d0fa; outline-offset: 3px; }
+    header { padding: 34px clamp(18px, 4vw, 60px) 24px; border-bottom: 1px solid #ffffff26; }
+    h1 { margin: 0 0 10px; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 650; }
+    header p { margin: 0; max-width: 850px; color: #b7c2c8; line-height: 1.9; font-size: 0.92rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 15px 22px; align-items: end; padding: 22px clamp(18px, 4vw, 60px); background: #171e23; border-bottom: 1px solid #ffffff26; }
+    .controls label { display: grid; gap: 6px; color: #cbd3d7; font-size: 0.76rem; }
+    .controls select { min-width: 152px; padding: 10px 14px; border-radius: 8px; border: 1px solid #ffffff3d; background: #222c33; color: white; }
+    .controls small { color: #aab9c2; line-height: 1.8; }
+    main { padding: 28px clamp(18px, 4vw, 60px) 65px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .card { min-width: 0; overflow: hidden; border: 1px solid #ffffff2b; border-radius: 18px; background: #1b2228; }
+    .card-head { padding: 20px 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 22px; }
+    .card-head h2 { margin: 0; font-size: 1.08rem; }
+    .card-head p { margin: 5px 0 0; color: #b9c5cb; font-size: 0.75rem; }
+    .card-head a { border: 1px solid #ffffff45; border-radius: 24px; padding: 8px 14px; text-decoration: none; font-size: 0.72rem; }
+    .card-head a:hover { background: #ffffff1a; }
+    .swatches { display: flex; gap: 7px; padding: 0 22px 18px; }
+    .swatches span { width: 28px; height: 28px; border-radius: 7px; border: 1px solid #ffffff36; }
+    .frame-shell { position: relative; margin: 0 14px 14px; overflow: hidden; border: 1px solid #ffffff38; border-radius: 10px; background: #0b1018; }
+    iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; background: #0b1018; }
+    .frame-note { padding: 0 22px 18px; color: #9eacb5; font-size: 0.7rem; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .controls select { min-width: 125px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>مقایسه رنگ‌بندی ویرا دیتا</h1>
+    <p>هر قاب همان محتوای فعلی سایت را با چیدمان و فونت یکسان نشان می‌دهد. فقط رنگ تغییر می‌کند. گزینه «فعلی» مبناست؛ هیچ پالت جدیدی روی سایت اصلی اعمال نشده است.</p>
+  </header>
+  <div class="controls" aria-label="تنظیمات مقایسه">
+    <label>بخش<select id="section"><option value="home">خانه</option><option value="solutions">راهکارها</option><option value="solution-cards">کارت‌های راهکارها</option><option value="contact">فرم تماس</option><option value="footer">فوتر</option></select></label>
+    <label>زبان<select id="language"><option value="fa">فارسی / RTL</option><option value="en">English / LTR</option></select></label>
+    <label>عرض<select id="viewport"><option value="desktop">دسکتاپ، ۱۴۴۰ پیکسل</option><option value="mobile">موبایل، ۳۹۰ پیکسل</option></select></label>
+    <label>حالت فرم<select id="form-state"><option value="normal">عادی</option><option value="focus">فوکوس</option><option value="success">موفقیت</option><option value="error">خطا</option></select></label>
+    <small>حالت‌های پیام در این صفحه فقط برای مقایسه رنگ نمایش داده می‌شوند؛ فرمی ارسال نمی‌شود.</small>
+  </div>
+  <main><div id="grid" class="grid"></div></main>
+  <script src="/__palette-apply.js"></script>
+  <script>
+    const palettes = [
+      { id: 'current', name: '۱. رنگ‌بندی فعلی', note: 'مبنای مقایسه', colors: ['#0b1018','#101925','#edf2fa','#a8c8ff'] },
+      { id: 'navy-teal', name: '۲. سرمه‌ای عمیق و فیروزه‌ای', note: 'دقیق، خنک و فناورانه', colors: ['#071922','#102b34','#eff9f8','#5bd6cb'] },
+      { id: 'warm-charcoal', name: '۳. زغالی گرم و مسی', note: 'گرم، متمایز و متین', colors: ['#191716','#2a2421','#f8f0ea','#e6a879'] },
+      { id: 'forest-green', name: '۴. سبز تیره و سبز روشن', note: 'آرام، پایدار و کنترل‌شده', colors: ['#0d1b17','#1a2e23','#f1f7ee','#b0de83'] },
+    ];
+    const grid = document.querySelector('#grid');
+    const section = document.querySelector('#section');
+    const language = document.querySelector('#language');
+    const viewport = document.querySelector('#viewport');
+    const formState = document.querySelector('#form-state');
+    const cards = palettes.map(palette => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const title = document.createElement('h2'); title.textContent = palette.name;
+      const note = document.createElement('p'); note.textContent = palette.note;
+      const label = document.createElement('div'); label.append(title, note);
+      const link = document.createElement('a'); link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'باز کردن در اندازه واقعی';
+      const head = document.createElement('div'); head.className = 'card-head'; head.append(label, link);
+      const swatches = document.createElement('div'); swatches.className = 'swatches';
+      palette.colors.forEach(color => { const swatch = document.createElement('span'); swatch.style.background = color; swatch.title = color; swatches.append(swatch); });
+      const shell = document.createElement('div'); shell.className = 'frame-shell';
+      const frame = document.createElement('iframe'); frame.title = palette.name; frame.loading = 'eager'; shell.append(frame);
+      const footer = document.createElement('div'); footer.className = 'frame-note'; footer.textContent = palette.colors.join('  ·  ');
+      card.append(head, swatches, shell, footer); grid.append(card);
+      return { palette, link, shell, frame };
+    });
+    function locationFor(id) {
+      const part = section.value === 'home' || section.value === 'footer' ? '' : section.value === 'solution-cards' ? '/solutions' : '/' + section.value;
+      const url = new URL('/' + language.value + part, location.origin);
+      if (id !== 'current') url.searchParams.set('palette', id);
+      if (section.value === 'footer') url.hash = 'footer';
+      if (section.value === 'solution-cards') url.hash = 'finance';
+      return url.href;
+    }
+    function fit(card) {
+      const mobile = viewport.value === 'mobile';
+      const width = mobile ? 390 : 1440;
+      const height = mobile ? (section.value === 'contact' ? 1854 : 844) : 900;
+      const scale = Math.min(1, card.shell.clientWidth / width);
+      card.shell.style.height = (height * scale) + 'px';
+      card.frame.style.width = width + 'px'; card.frame.style.height = height + 'px';
+      card.frame.style.left = ((card.shell.clientWidth - width * scale) / 2) + 'px';
+      card.frame.style.transform = 'scale(' + scale + ')';
+    }
+    function render() {
+      if (formState.value !== 'normal' && section.value !== 'contact') section.value = 'contact';
+      cards.forEach(card => {
+        fit(card);
+        const url = locationFor(card.palette.id);
+        const fullSize = new URL('/palette-fullsize.html', location.origin);
+        fullSize.searchParams.set('palette', card.palette.id);
+        fullSize.searchParams.set('lang', language.value);
+        fullSize.searchParams.set('section', section.value);
+        card.link.href = fullSize.href;
+        card.frame.onload = () => { setTimeout(() => window.palettePreview.apply(card.frame, card.palette.id, formState.value, language.value), 400); };
+        card.frame.src = url;
+      });
+    }
+    [section, language, viewport, formState].forEach(control => control.addEventListener('change', render));
+    new ResizeObserver(() => cards.forEach(fit)).observe(grid);
+    render();
+  </script>
+</body>
+</html>

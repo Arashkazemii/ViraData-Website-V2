@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/icon">
+  <title>ViraData palette preview</title>
+  <style>html, body { width: 100%; height: 100%; margin: 0; background: #0b1018; } iframe { display: block; width: 100%; height: 100%; border: 0; }</style>
+</head>
+<body>
+  <iframe title="ViraData palette preview"></iframe>
+  <script src="/__palette-apply.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const palette = ['navy-teal', 'warm-charcoal', 'forest-green'].includes(params.get('palette')) ? params.get('palette') : 'current';
+    const lang = params.get('lang') === 'en' ? 'en' : 'fa';
+    const section = ['home', 'solutions', 'solution-cards', 'contact', 'footer'].includes(params.get('section')) ? params.get('section') : 'home';
+    const part = section === 'solutions' || section === 'solution-cards' ? '/solutions' : section === 'contact' ? '/contact' : '';
+    const hash = section === 'footer' ? '#footer' : section === 'solution-cards' ? '#finance' : '';
+    const frame = document.querySelector('iframe');
+    frame.onload = () => { setTimeout(() => window.palettePreview.apply(frame, palette), 400); };
+    frame.src = '/' + lang + part + hash;
+  </script>
+</body>
+</html>

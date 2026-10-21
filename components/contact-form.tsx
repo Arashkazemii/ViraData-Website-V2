@@ -61,7 +61,7 @@ export function ContactForm({ lang }: { lang: Locale }) {
             </label>
             <label htmlFor="contact-phone">
               {fa ? "شماره تماس" : "Phone"}
-              <input id="contact-phone" name="phone" type="tel" dir="ltr" autoComplete="tel" maxLength={40} pattern="[+0-9(). -]*" />
+              <input id="contact-phone" name="phone" type="tel" dir="ltr" autoComplete="tel" maxLength={40} />
             </label>
           </div>
           <label className="message-label" htmlFor="contact-message">

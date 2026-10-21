@@ -2,7 +2,7 @@
 
 Reading this as a premium B2B data and AI consultancy for business decision makers: clear, confident, and calm, with editorial spacing and purposeful motion.
 
-- Mode: visual overhaul. Preserve routes, bilingual content, brand mark, demo disclosures, and metadata. The approved contact form omits the request-topic field.
+- Mode: visual overhaul. Preserve routes, bilingual content, brand mark, demo disclosures, and metadata. The contact form has no topic field.
 - Dials: DESIGN_VARIANCE 7, MOTION_INTENSITY 7, VISUAL_DENSITY 3. Use asymmetry and generous spacing; keep motion secondary to reading.
 - Foundation: existing Next.js, native CSS, and Motion. No new styling framework.
 - Palette: deep navy `#0b1018`, layered slate surfaces, silver text, blue `#a8c8ff` accent. Keep one dark theme throughout. Semantic chart colors describe gains and losses.

@@ -77,7 +77,7 @@ export async function sendContactEmail(
     from,
     to: CONTACT_RECIPIENT,
     replyTo: input.email,
-    subject: "ViraData contact request",
+    subject: "New message from ViraData website",
     text: fields.map(([label, value]) => `${label}: ${value}`).join("\n\n"),
     html: fields.map(([label, value]) =>
       `<p><strong>${label}:</strong> ${escapeHtml(value).replace(/\n/g, "<br>")}</p>`

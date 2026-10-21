@@ -10,7 +10,6 @@ import {
   AssistantPreview,
   DashboardPreview,
   MethodLedger,
-  ReportPanel,
 } from "./decision-story";
 import { demos, href, site, type DemoId, type Locale } from "@/lib/config";
 import { getCopy } from "@/lib/copy";
@@ -88,8 +87,8 @@ export function HomePage({ lang }: { lang: Locale }) {
             </h2>
             <p>
               {lang === "fa"
-                ? "سه مسیر، هرکدام متناسب با مسئله و داده شما."
-                : "Three paths, each shaped by your problem and data."}
+                ? "شش حوزه، هرکدام متناسب با مسئله و داده شما."
+                : "Six areas, each shaped by your problem and data."}
             </p>
           </Reveal>
           <div className="family-list">
@@ -97,10 +96,10 @@ export function HomePage({ lang }: { lang: Locale }) {
               <Reveal key={item.title} delay={i * 0.08} className={`family-card family-card--${i}`}>
                 <Link
                   className="family-row"
-                  href={`${href(lang, "solutions")}#${["assistants", "analytics", "decisions"][i]}`}
+                  href={`${href(lang, "solutions")}#${c.solutions.items[i].id}`}
                 >
                   <span className="family-icon" aria-hidden="true">
-                    {i === 0 ? <ChatsCircle size={30} weight="duotone" /> : i === 1 ? <ChartBar size={30} weight="duotone" /> : <TreeStructure size={30} weight="duotone" />}
+                  {i % 3 === 0 ? <ChatsCircle size={30} weight="duotone" /> : i % 3 === 1 ? <ChartBar size={30} weight="duotone" /> : <TreeStructure size={30} weight="duotone" />}
                   </span>
                   <div className="family-title">
                     <h3>{item.title}</h3>
@@ -236,48 +235,34 @@ export function SolutionsPage({ lang }: { lang: Locale }) {
           </div>
         </div>
       </section>
+      <div className="solution-segments">
       {c.solutions.items.map((item, i) => (
         <section
           key={item.id}
           id={item.id}
-          className={`solution-section section-pad solution-section--${i + 1}`}
+          className="solution-section section-pad"
         >
           <div className="container">
             <SectionIndex>
-              {lang === "fa" ? "پروندهٔ راهکار" : "SOLUTION BRIEF"}
+              {number(i + 1, lang)} / {number(c.solutions.items.length, lang)}
             </SectionIndex>
-            <Reveal className="solution-main">
-              <div className="solution-copy">
-                <h2>{item.title}</h2>
-                <p className="large-copy">{item.intro}</p>
-                <ArrowLink
-                  href={href(lang, "contact")}
-                  className="button button-outline"
-                >
-                  {item.cta}
-                </ArrowLink>
-              </div>
-              <div className="solution-product">
-                {i === 0 ? (
-                  <AssistantPreview lang={lang} />
-                ) : i === 1 ? (
-                  <DashboardPreview lang={lang} />
-                ) : (
-                  <ReportPanel lang={lang} stage={5} />
-                )}
-              </div>
+            <Reveal className="segment-heading">
+              <h2>{item.title}</h2>
+              <p>{item.intro}</p>
             </Reveal>
-            <Reveal className="solution-details">
-              {[item.examples, item.inputs, item.output].map((text, j) => (
-                <div key={text}>
-                  <h3>{c.solutions.labels[j]}</h3>
-                  <p>{text}</p>
-                </div>
+            <Reveal className="segment-cases">
+              {item.cases.map(([problem, approach], j) => (
+                <article className="segment-case" key={problem}>
+                  <span>{number(j + 1, lang)}</span>
+                  <div><h3>{problem}</h3><p>{approach}</p></div>
+                </article>
               ))}
             </Reveal>
+            <ArrowLink href={href(lang, "contact")} className="button button-outline">{item.cta}</ArrowLink>
           </div>
         </section>
       ))}
+      </div>
       <section className="deployment-note">
         <div className="container">
           <span className="eyebrow">
@@ -349,10 +334,6 @@ export function DemosPage({ lang }: { lang: Locale }) {
                 </div>
               </div>
               <div className="demo-foot">
-                <div>
-                  <h3>{c.demos.limitation}</h3>
-                  <p>{item.limits}</p>
-                </div>
                 {canLaunch ? (
                   <a
                     className="button button-outline"
@@ -374,7 +355,6 @@ export function DemosPage({ lang }: { lang: Locale }) {
             </section>
           );
         })}
-        <p className="demo-disclaimer">{c.demos.note}</p>
       </div>
     </main>
   );
@@ -458,6 +438,7 @@ export function ContactPage({ lang }: { lang: Locale }) {
             <span className="eyebrow">{c.nav[4]}</span>
             <h1><HeroWords text={c.contact.title} /></h1>
             <p>{c.contact.lead}</p>
+            <a className="contact-email" href="mailto:vp.sales@viradataco.com" dir="ltr">vp.sales@viradataco.com</a>
             <ol className="contact-prompts">
               {(lang === "fa"
                 ? [

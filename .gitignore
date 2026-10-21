@@ -8,3 +8,8 @@ out/
 screenshots/
 graphify-out/
 backups/
+
+# Keep SMTP credentials and local deployment settings out of Git.
+.env
+.env.*
+!.env.example

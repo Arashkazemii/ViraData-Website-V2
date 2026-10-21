@@ -133,7 +133,7 @@ export function Shell({
       >
         {children}
       </motion.div>
-      <footer className="site-footer">
+      <footer className="site-footer" id="footer">
         <div className="container footer-top">
           <div className="footer-brand-block">
             <Link className="brand" href={href(lang)} aria-label="ViraData">
@@ -142,16 +142,18 @@ export function Shell({
             </Link>
             <p className="footer-statement">{c.common.footer}</p>
           </div>
-          <Link
+          <button
             className="footer-up"
-            href={href(lang)}
             aria-label={c.common.back}
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })}
           >
             <ArrowUp size={22} aria-hidden="true" />
-          </Link>
+          </button>
         </div>
         <div className="container footer-bottom">
           <span>© {new Date().getFullYear()} ViraData</span>
+          <a className="footer-email" href="mailto:vp.sales@viradataco.com" dir="ltr">vp.sales@viradataco.com</a>
           <nav
             aria-label={
               lang === "fa" ? "ناوبری پایین صفحه" : "Footer navigation"
@@ -163,6 +165,18 @@ export function Shell({
               </Link>
             ))}
           </nav>
+        </div>
+        <div className="container font-license-row">
+          <a
+            className="font-license"
+            href="https://fontiran.com/license/21LDVTC6"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={lang === "fa" ? "اعتبارسنجی مجوز فونت ایران‌یکان در فونت ایران، 21LDVTC6" : "Verify IRANYekanX font license with Fontiran, 21LDVTC6"}
+          >
+            <Image src="/fontiran-license.png" alt="" width={28} height={28} unoptimized />
+            <span>{lang === "fa" ? "فونت ایران‌یکان با مجوز فونت ایران" : "IRANYekanX licensed by Fontiran"} · <bdi>21LDVTC6</bdi></span>
+          </a>
         </div>
       </footer>
     </>

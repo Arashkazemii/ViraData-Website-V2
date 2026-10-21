@@ -1,0 +1,14 @@
+# Liara uploads: source only. Keep local artifacts and secrets off the server.
+.git/
+node_modules/
+.next/
+out/
+graphify-out/
+.playwright-cli/
+screenshots/
+backups/
+palette-preview/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example

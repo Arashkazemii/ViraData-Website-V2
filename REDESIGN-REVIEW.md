@@ -1,5 +1,7 @@
 # Redesign review
 
+Historical redesign report. Current release validation and font audit are in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 The website now uses a unified navy palette, Manrope typography, rounded controls, an asymmetric services layout, and consistent product and form surfaces. Motion provides heading and route entrances, scroll reveals, a six-scene report narrative, chart transitions, and small pointer responses. React Bits Threads provides the flowing hero background, with its upstream license retained.
 
 Existing bilingual routes, business copy, supplied logo, synthetic data, demo availability, contact delivery logic, and metadata remain intact. See [DESIGN.md](DESIGN.md) for the visual direction and references.
@@ -27,6 +29,6 @@ Open `http://localhost:3001/fa` or `/en`. Reusable browser checks are in `script
 
 ## Scope and remaining launch configuration
 
-No live email was sent during browser QA; contact success and failure were mocked. Production SMTP delivery and the supplied Persian font license placeholder remain launch configuration described in the README. No public deployment was performed.
+No live email was sent during browser QA; contact success and failure were mocked. The Persian font license is registered and verified. Current SMTP configuration is managed in Liara, outside this repository. No public deployment was performed during this review.
 
 The original backup is `backups/pre-redesign-20261020-002456.zip`. Archive integrity and its embedded Git HEAD were rechecked after implementation. The backup retains the previous Git HEAD. The approved redesign and simplified contact form are committed as the latest version on main.

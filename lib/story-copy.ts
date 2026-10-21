@@ -2,7 +2,7 @@ export const storyCopy = {
   fa: {
     label: "پروندهٔ نمایشی / از درخواست تا تصمیم",
     question: "فروش رشد کرده؛ چرا سود کمتر شده؟",
-    sample: "روایت نمایشی · دادهٔ ساختگی",
+    sample: "نمونه با داده فرضی",
     unit: "میلیون تومان",
     previous: "دورهٔ قبل",
     current: "دورهٔ جاری",
@@ -33,7 +33,6 @@ export const storyCopy = {
     answer:
       "ابتدا بررسی مسئول واحد؛ سپس تأیید بودجه و ثبت سفارش. مبنای پاسخ را در بند زیر ببینید.",
     sourceLabel: "منبع ساختگی · راهنمای خرید، بند ۲",
-    noAI: "پیش‌نمایش طراحی؛ بدون اتصال AI یا پایگاه داده",
     steps: [
       [
         "دادهٔ خام",
@@ -70,7 +69,7 @@ export const storyCopy = {
   en: {
     label: "ILLUSTRATED CASE / REQUEST TO DECISION",
     question: "Sales are up. Why is profit down?",
-    sample: "Illustrated scenario · synthetic data",
+    sample: "Example with sample data",
     unit: "Million tomans",
     previous: "Previous period",
     current: "Current period",
@@ -101,7 +100,6 @@ export const storyCopy = {
     answer:
       "First, department review. Then budget approval and order placement. Inspect the supporting passage below.",
     sourceLabel: "Fictional source · purchasing guide, §2",
-    noAI: "Design preview; no AI or database connection",
     steps: [
       [
         "SOURCE DATA",

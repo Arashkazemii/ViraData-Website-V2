@@ -7,14 +7,12 @@ const copy = {
       skip: "رفتن به محتوای اصلی",
       talk: "گفت‌وگو درباره پروژه",
       explore: "بیشتر بدانید",
-      back: "بازگشت به خانه",
+      back: "بازگشت به بالای صفحه",
       missing: "این صفحه پیدا نشد.",
       menu: "فهرست",
       close: "بستن فهرست",
       footer:
         "ویرا دیتا؛ طراحی و اجرای راهکارهای داده و هوش مصنوعی برای مسئله‌های واقعی کسب‌وکار.",
-      contactSoon: "راه ارتباط ایمیلی به‌زودی در این صفحه فعال می‌شود.",
-      sample: "تصویر مفهومی با داده ساختگی",
       status: {
         planned: "در حال آماده‌سازی",
         preview: "پیش‌نمایش با داده نمونه",
@@ -42,23 +40,14 @@ const copy = {
         "کارهای تکراری",
         "پاسخ‌های پنهان در اسناد",
       ],
-      familiesLabel: "حوزه‌های کار",
+      familiesLabel: "حوزه‌های راهکار",
       families: [
-        {
-          title: "دستیارهای هوشمند سازمانی",
-          body: "دسترسی سریع‌تر به دانش و پاسخ‌های قابل پیگیری، در محدوده منابع و دسترسی‌های مجاز.",
-          cta: "آشنایی با دستیارها",
-        },
-        {
-          title: "تحلیل داده و داشبورد مدیریتی",
-          body: "شاخص‌های تعریف‌شده، گزارش‌های قابل بررسی و مسیری روشن از عدد تا جزئیات آن.",
-          cta: "آشنایی با تحلیل داده",
-        },
-        {
-          title: "راهکارهای تصمیم و خودکارسازی",
-          body: "تحلیل، پیش‌بینی یا ساده‌سازی کارهای تکراری، زمانی که داده و مسئله برای آن مناسب باشد.",
-          cta: "دیدن راهکارها",
-        },
+        { title: "مالی", body: "از تطبیق اعداد تا دیدن دقیق‌تر هزینه و سودآوری.", cta: "راهکارهای مالی" },
+        { title: "هوشمندسازی", body: "دسترسی بهتر به دانش سازمانی و ساده‌سازی کارهای تکراری.", cta: "راهکارهای هوشمندسازی" },
+        { title: "تولیدی و صنعتی", body: "شناخت گلوگاه تولید، توقف‌ها و تغییرات کیفیت.", cta: "راهکارهای صنعتی" },
+        { title: "بازرگانی", body: "دید روشن‌تر از خرید، تأمین و موجودی.", cta: "راهکارهای بازرگانی" },
+        { title: "فروش", body: "شناخت رفتار مشتری، روند فروش و عملکرد کانال‌ها.", cta: "راهکارهای فروش" },
+        { title: "سلامت و درمان", body: "کمک به برنامه‌ریزی ظرفیت و جریان خدمت در مراکز درمانی.", cta: "راهکارهای سلامت" },
       ],
       stepsTitle: "از گفت‌وگوی اول تا نتیجه قابل بررسی.",
       steps: [
@@ -80,8 +69,7 @@ const copy = {
         ],
       ],
       demosTitle: "ایده را در عمل ببینید.",
-      demosBody:
-        "نمونه‌های نمایشی کمک می‌کنند شکل تعامل با داده و راهکار را ببینید. داده‌ها ساختگی‌اند و دموها جایگزین بررسی مسئله و داده‌های سازمان شما نیستند.",
+      demosBody: "داشبورد و دستیار هوشمند در حال آماده‌سازی‌اند.",
       demosCta: "دموها را ببینید",
       closeTitle: "مسئله شما از کجا شروع می‌شود؟",
       closeBody:
@@ -89,78 +77,86 @@ const copy = {
       closeCta: "شروع گفت‌وگو",
     },
     solutions: {
-      title: "راهکار متناسب با مسئله، داده و شیوه کار شما.",
-      lead: "ویرا دیتا یک محصول ثابت را برای همه سازمان‌ها تجویز نمی‌کند. بسته به نیاز، یک راهکار می‌تواند از تحلیل داده، دستیار هوشمند، مدل تصمیم یا خودکارسازی تشکیل شود. محدوده و روش اجرا پس از شناخت مسئله تعیین می‌شود.",
-      labels: ["نمونه کاربردها", "برای شروع نیاز داریم", "خروجی قابل بررسی"],
+      title: "راهکارها برای مسئله‌های واقعی هر صنعت.",
+      lead: "از مالی و تولید تا فروش و درمان، مسئله هر سازمان را با داده و فرایند همان سازمان بررسی می‌کنیم. نمونه‌های زیر مسیرهای ممکن‌اند؛ محدوده اجرا پس از شناخت نیاز و داده تعیین می‌شود.",
       items: [
         {
-          id: "assistants",
-          title: "دستیارهای هوشمند سازمانی",
-          intro:
-            "وقتی پاسخ یک پرسش میان سندها و سیستم‌ها پراکنده است، دستیار می‌تواند جست‌وجو و استفاده از دانش را ساده‌تر کند. پاسخ باید به منبع مرتبط وصل باشد و اگر شواهد کافی نیست، این محدودیت را روشن بگوید.",
-          examples:
-            "جست‌وجو در دستورالعمل‌ها و قراردادهای مجاز؛ راهنمایی کارکنان در فرایندها؛ پرسش درباره شاخص‌های تعریف‌شده.",
-          inputs:
-            "منابع قابل استفاده، سطح دسترسی، نمونه پرسش و معیار ارزیابی پاسخ.",
-          output:
-            "سناریوهای مجاز، رابط دستیار، ارجاع به منبع و گزارش آزمون پاسخ.",
-          cta: "درباره دستیار سازمانی صحبت کنیم.",
+          id: "finance", title: "مالی",
+          intro: "برای تصمیم مالی، عددها باید هم‌معنا، به‌روز و قابل پیگیری باشند.",
+          cases: [
+            ["گزارش سودآوری با تأخیر آماده می‌شود.", "تعریف مشترک درآمد و هزینه، تطبیق داده‌های حسابداری و فروش، و طراحی گزارش دوره‌ای با امکان بررسی ردیف‌های سازنده هر عدد."],
+            ["علت افزایش هزینه روشن نیست.", "تفکیک هزینه بر پایه مرکز هزینه، محصول و دوره؛ سپس نمایش تغییرات مهم برای بررسی مدیر مالی."],
+            ["جریان نقدی قابل پیش‌بینی نیست.", "کنار هم گذاشتن سررسید دریافت‌ها و پرداخت‌ها و ساخت سناریوهای کوتاه‌مدت با فرض‌های شفاف."],
+          ], cta: "درباره مسئله مالی گفت‌وگو کنیم",
         },
         {
-          id: "analytics",
-          title: "تحلیل داده و داشبورد",
-          intro:
-            "یک گزارش خوب فقط نمودار زیبا نیست. باید معلوم باشد شاخص چه معنایی دارد، از کدام داده حساب شده و وقتی تغییری دیده می‌شود چگونه می‌توان به جزئیات رسید.",
-          examples:
-            "گزارش فروش و خرید؛ پایش هزینه و سودآوری؛ تحلیل مشتری و عملکرد؛ بررسی تغییر یک شاخص در زمان یا بین گروه‌ها.",
-          inputs:
-            "داده‌های مبنا، تعریف شاخص‌ها، بازه و سطح جزئیات، کاربران و تصمیم‌هایی که گزارش پشتیبانی می‌کند.",
-          output:
-            "تعریف شاخص، گزارش تعاملی، مسیر ورود به جزئیات و آزمون تطبیق اعداد.",
-          cta: "درباره داشبورد صحبت کنیم.",
+          id: "intelligence", title: "هوشمندسازی",
+          intro: "وقتی دانش پراکنده و کار تکراری زیاد است، می‌توان مسیر دسترسی و انجام کار را ساده‌تر کرد.",
+          cases: [
+            ["پاسخ به پرسش‌های داخلی در اسناد پراکنده است.", "سامان‌دهی منابع مجاز و بررسی امکان دستیار جست‌وجو با ارجاع به سند و رعایت سطح دسترسی."],
+            ["درخواست‌های مشابه بارها دستی ثبت می‌شوند.", "ترسیم گردش کار، شناسایی مرحله‌های تکراری و طراحی خودکارسازی محدود با امکان تأیید انسانی."],
+            ["اولویت رسیدگی به درخواست‌ها مبهم است.", "تعریف معیارهای اولویت و آزمون یک روش دسته‌بندی روی داده‌های گذشته، همراه با امکان بازبینی نتیجه."],
+          ], cta: "درباره هوشمندسازی گفت‌وگو کنیم",
         },
         {
-          id: "decisions",
-          title: "تصمیم‌یار و خودکارسازی",
-          intro:
-            "بعضی تصمیم‌ها به بررسی سناریو، پیش‌بینی یا اولویت‌بندی نیاز دارند. بعضی کارها هم با حذف ورودهای تکراری و گردش دستی ساده‌تر می‌شوند. روش مناسب به داده، هزینه خطا و نحوه استفاده افراد بستگی دارد.",
-          examples:
-            "پیش‌بینی تقاضا در صورت وجود تاریخچه مناسب؛ مقایسه سناریوهای خرید و تأمین؛ هشدار درباره تغییرات مهم؛ خودکارسازی مرحله‌های مشخص در یک فرایند.",
-          inputs:
-            "داده تاریخی و کیفیت آن، قواعد کسب‌وکار، محدودیت‌های تصمیم و خط مبنای قابل مقایسه.",
-          output:
-            "مدل یا قاعده آزموده‌شده، نمایش فرض‌ها و محدودیت‌ها، سناریوی کاربری و روش پایش نتیجه.",
-          cta: "مسئله تصمیم‌گیری را مطرح کنیم.",
+          id: "industry", title: "تولیدی و صنعتی",
+          intro: "داده خط تولید زمانی ارزش دارد که به کاهش توقف و تصمیم بهتر درباره ظرفیت و کیفیت کمک کند.",
+          cases: [
+            ["توقف‌های خط تولید علت مشخصی ندارند.", "ثبت یکسان علت توقف و تحلیل زمان، دستگاه و شیفت برای شناسایی گلوگاه‌های پرتکرار."],
+            ["ضایعات در بعضی بچ‌ها بیشتر است.", "پیوند داده تولید و کنترل کیفیت برای مقایسه مواد، شرایط فرایند و نرخ ضایعات."],
+            ["برنامه تولید با ظرفیت واقعی هماهنگ نیست.", "نمایش ظرفیت، سفارش و موجودی در یک نمای برنامه‌ریزی و بررسی سناریوهای جابه‌جایی سفارش."],
+          ], cta: "درباره تولید گفت‌وگو کنیم",
+        },
+        {
+          id: "commerce", title: "بازرگانی",
+          intro: "تصمیم خرید و تأمین به دید مشترک از تقاضا، موجودی و عملکرد تأمین‌کننده نیاز دارد.",
+          cases: [
+            ["موجودی برخی کالاها زیاد و برخی کم است.", "تلفیق فروش، سفارش و موجودی برای مشخص‌کردن اقلام پرریسک و بازنگری نقطه سفارش."],
+            ["عملکرد تأمین‌کنندگان به‌سختی مقایسه می‌شود.", "تعریف شاخص‌هایی مانند زمان تحویل، کیفیت و نوسان قیمت و ساخت گزارش مقایسه‌ای."],
+            ["تغییر قیمت خرید دیر دیده می‌شود.", "مقایسه قیمت هر قلم در دوره‌ها و قراردادها و علامت‌گذاری تغییرات نیازمند بررسی."],
+          ], cta: "درباره بازرگانی گفت‌وگو کنیم",
+        },
+        {
+          id: "sales", title: "فروش",
+          intro: "از عدد فروش تا رفتار مشتری، گزارش باید به اقدام تیم فروش کمک کند.",
+          cases: [
+            ["دلیل افت فروش یک منطقه معلوم نیست.", "بررسی روند فروش به تفکیک منطقه، محصول و کانال و مقایسه آن با دوره مشابه."],
+            ["فرصت‌های فروش در پیگیری گم می‌شوند.", "تعریف مراحل فرصت و گزارش زمان ماندن در هر مرحله برای پیدا کردن نقطه‌های ریزش."],
+            ["مشتریان قدیمی کمتر خرید می‌کنند.", "تحلیل فاصله و تکرار خرید و تهیه فهرست مشتریانی که نیاز به پیگیری دارند."],
+          ], cta: "درباره فروش گفت‌وگو کنیم",
+        },
+        {
+          id: "healthcare", title: "سلامت و درمان",
+          intro: "بیمارستان‌ها و مراکز درمانی برای برنامه‌ریزی خدمت به داده دقیق، محرمانگی و نظارت انسانی نیاز دارند.",
+          cases: [
+            ["زمان انتظار در بعضی بخش‌ها بالاست.", "تحلیل زمان پذیرش، ارجاع و خدمت به‌صورت تجمیعی برای شناخت گلوگاه و تنظیم ظرفیت."],
+            ["استفاده از تخت و تجهیزات نوسان دارد.", "نمایش روند اشغال، زمان آزادسازی و برنامه خدمت برای پشتیبانی از برنامه‌ریزی منابع."],
+            ["گزارش عملکرد واحدها دیر آماده می‌شود.", "تعریف شاخص‌های مورد توافق و ساخت گزارش دوره‌ای از داده‌های مجاز، با کنترل دسترسی و بدون تصمیم‌گیری خودکار درمانی."],
+          ], cta: "درباره نیاز مرکز درمانی گفت‌وگو کنیم",
         },
       ],
-      closing:
-        "استقرار روی زیرساخت مشتری یا استفاده از سرویس بیرونی، با توجه به نیاز، امکانات و رضایت او بررسی می‌شود. هزینه سرویس، محرمانگی و سطح دسترسی در محدوده هر پروژه مشخص خواهد شد.",
+      closing: "هر راهکار با توجه به فرایند، داده و محدودیت‌های سازمان شما تعریف و ارزیابی می‌شود.",
     },
     demos: {
       title: "نمونه‌هایی برای دیدن شیوه کار راهکار.",
-      lead: "این دموها از داده و منابع ساختگی استفاده می‌کنند. عملکردشان فقط همان سناریوی نمایش‌داده‌شده را نشان می‌دهد؛ نتیجه واقعی هر پروژه پس از شناخت داده و فرایند مشتری قابل ارزیابی است.",
+      lead: "دو ایده برای دیدن مسیر گزارش‌گیری و دسترسی به دانش سازمانی.",
       promptLabel: "درخواست نمونه",
-      limitation: "وضعیت و محدوده",
       dashboard: {
         title: "داشبورد هوشمند",
         summary:
-          "یک درخواست فارسی مانند «گزارش خرید سه ماه اخیر را با تفکیک منطقه نشان بده» به گزارش ساخت‌یافته تبدیل می‌شود. کاربر می‌تواند فیلترها، شاخص‌ها، نمودار و ردیف‌های سازنده عددها را بررسی کند. نمونه‌های مالی، فروش و خرید از یک مجموعه داده سازگار می‌آیند. بینش‌ها همراه مبنای محاسبه نمایش داده می‌شوند.",
+          "طرح داشبوردی برای بررسی شاخص‌ها، نمودارها و ردیف‌های سازنده هر عدد؛ با امکان مقایسه مالی، فروش و خرید در یک نمای هماهنگ.",
         prompts: [
           "گزارش فروش ماه جاری را به تفکیک محصول بده",
           "هزینه‌های خرید را با دوره قبل مقایسه کن",
           "درآمد، هزینه و سود را نشان بده و تغییرات مهم را مشخص کن",
         ],
-        limits:
-          "این پیش‌نمایش با دادهٔ ساختگی و حالت‌های از پیش تعریف‌شده کار می‌کند. تفسیر آزاد درخواست، اتصال AI یا پایگاه داده ندارد؛ دموی اصلی در حال آماده‌سازی است.",
       },
       assistant: {
         title: "دستیار هوش مصنوعی",
         summary:
-          "نمونه‌ای از پرسش و پاسخ درباره منابع مجاز سازمانی؛ مسیر هدف شامل نمایش منبع، امکان پیگیری سؤال و اعلام روشن پاسخ نامعلوم است. اجرای زنده فقط پس از آماده‌سازی و آزمون آن فعال می‌شود.",
+          "طرح دستیار برای یافتن پاسخ در منابع مجاز سازمانی، همراه با ارجاع به منبع و بیان روشن موارد نامعلوم.",
         prompts: ["مراحل تأیید درخواست خرید چیست و این پاسخ از کدام سند آمده؟"],
-        limits: "این سناریو هنوز به منابع سازمانی واقعی متصل نیست.",
       },
-      note: "داده‌ها و منابع هر دمو ساختگی‌اند. برچسب نمونه‌بودن داده باید در خود دموی آینده نیز نمایش داده شود.",
     },
     about: {
       title: "فناوری زمانی ارزش دارد که مسئله را بهتر حل کند.",
@@ -183,14 +179,12 @@ const copy = {
           "خروجی را با سناریوهای آزمون می‌سنجیم و بر اساس بازخورد اصلاح می‌کنیم.",
         ],
       ],
-      team: "ویرا دیتا با مدل مشاوره اجرایی فعالیت می‌کند. آرش کاظمی مسئول فنی و آرمین فرهادی مسئول مالی و تجاری همکاری هستند.",
+      team: "تیم ویرا دیتا متخصصانی در حوزه داده، هوش مصنوعی، طراحی تجربه و اجرای راهکارهای سازمانی را کنار هم می‌آورد. با شناخت فرایندهای هر مجموعه، راهکارهایی طراحی می‌کنیم که برای کاربران روشن و برای سازمان قابل ارزیابی باشند.",
       cta: "مسئله‌تان را با ما در میان بگذارید.",
     },
     contact: {
       title: "بیایید از مسئله شما شروع کنیم.",
       lead: "چند خط درباره کسب‌وکار، چالش فعلی و نتیجه‌ای که می‌خواهید بنویسید. اگر هنوز راهکار مشخص نیست، همان مسئله نقطه شروع خوبی است.",
-      unavailable:
-        "راه ارتباط ایمیلی به‌زودی در این صفحه فعال می‌شود. تا تأیید مسیر دریافت، درخواست شما اینجا ثبت یا ارسال نمی‌شود.",
       labels: {
         name: "نام و نام خانوادگی",
         email: "ایمیل",
@@ -206,9 +200,6 @@ const copy = {
         message: "مسئله یا ایده‌تان را شرح دهید.",
         messageLength: "پیام باید دست‌کم دوازده نویسه باشد.",
       },
-      prepare: "آماده‌کردن ایمیل",
-      emailHint:
-        "این دکمه برنامه ایمیل شما را باز می‌کند؛ ارسال نهایی را در آن برنامه انجام دهید.",
     },
     metadata: {
       "": [
@@ -217,11 +208,11 @@ const copy = {
       ],
       solutions: [
         "راهکارهای داده و هوش مصنوعی | ویرا دیتا",
-        "دستیار سازمانی، تحلیل داده و داشبورد، تصمیم‌یار و خودکارسازی متناسب با نیاز و داده سازمان.",
+        "راهکارهای مالی، هوشمندسازی، صنعتی، بازرگانی، فروش و سلامت متناسب با نیاز سازمان.",
       ],
       demos: [
         "دموهای ویرا دیتا",
-        "نمونه‌های نمایشی داشبورد هوشمند و دستیار هوش مصنوعی با داده ساختگی و وضعیت اجرای مشخص.",
+        "نگاهی به ایده‌های داشبورد هوشمند و دستیار هوش مصنوعی؛ در حال آماده‌سازی.",
       ],
       about: [
         "درباره ویرا دیتا",
@@ -239,14 +230,12 @@ const copy = {
       skip: "Skip to main content",
       talk: "Discuss a project",
       explore: "Learn more",
-      back: "Back to home",
+      back: "Back to top",
       missing: "We couldn't find that page.",
       menu: "Open menu",
       close: "Close menu",
       footer:
         "ViraData designs and builds data and AI solutions for real business problems.",
-      contactSoon: "Email contact will be available here soon.",
-      sample: "Conceptual visual with synthetic data",
       status: {
         planned: "In preparation",
         preview: "Preview with sample data",
@@ -274,23 +263,14 @@ const copy = {
         "Repetitive work",
         "Answers buried in systems",
       ],
-      familiesLabel: "What we build",
+      familiesLabel: "Solution areas",
       families: [
-        {
-          title: "Enterprise AI assistants",
-          body: "Find and use organizational knowledge with traceable answers and appropriate access controls.",
-          cta: "Explore assistants",
-        },
-        {
-          title: "Analytics and management dashboards",
-          body: "Defined metrics, inspectable reports, and a clear path from each number to its detail.",
-          cta: "Explore analytics",
-        },
-        {
-          title: "Decision support and automation",
-          body: "Analysis, forecasting, or simpler repetitive workflows where the problem and data make them useful.",
-          cta: "Explore solutions",
-        },
+        { title: "Finance", body: "Reconcile figures and understand costs and profitability.", cta: "Finance solutions" },
+        { title: "Intelligent operations", body: "Make organizational knowledge easier to use and simplify repetitive work.", cta: "Intelligent solutions" },
+        { title: "Manufacturing & industry", body: "Understand production bottlenecks, downtime, and quality shifts.", cta: "Industrial solutions" },
+        { title: "Commerce", body: "See procurement, supply, and inventory more clearly.", cta: "Commerce solutions" },
+        { title: "Sales", body: "Understand customers, sales trends, and channel performance.", cta: "Sales solutions" },
+        { title: "Healthcare", body: "Support capacity and service planning in care settings.", cta: "Healthcare solutions" },
       ],
       stepsTitle: "From the first conversation to an outcome you can assess.",
       steps: [
@@ -312,8 +292,7 @@ const copy = {
         ],
       ],
       demosTitle: "See the idea in action.",
-      demosBody:
-        "These demonstrations show how people can work with data and AI. They use synthetic data and do not replace an assessment of your organization.",
+      demosBody: "The dashboard and AI assistant are in preparation.",
       demosCta: "Explore demos",
       closeTitle: "Where does your challenge begin?",
       closeBody:
@@ -321,81 +300,88 @@ const copy = {
       closeCta: "Start a conversation",
     },
     solutions: {
-      title: "Solutions shaped by your problem, data, and workflow.",
-      lead: "ViraData does not prescribe one product for every organization. A solution may combine analytics, an AI assistant, decision support, or automation. We define the scope after understanding the problem.",
-      labels: ["Example uses", "What we need to begin", "Reviewable output"],
+      title: "Solutions for real challenges across industries.",
+      lead: "From finance and manufacturing to sales and healthcare, we examine each organization's workflow and data. These are possible approaches; the scope is defined after understanding your needs.",
       items: [
         {
-          id: "assistants",
-          title: "Enterprise AI assistants",
-          intro:
-            "When answers are scattered across documents and systems, an assistant can make knowledge easier to find and use. Answers should point to relevant sources and acknowledge when the evidence is insufficient.",
-          examples:
-            "Searching permitted procedures and contracts; guiding staff through workflows; asking about defined metrics.",
-          inputs:
-            "Approved sources, access levels, example questions, and evaluation criteria.",
-          output:
-            "Allowed scenarios, an assistant interface, source references, and an answer evaluation report.",
-          cta: "Discuss an enterprise assistant.",
+          id: "finance", title: "Finance",
+          intro: "Financial decisions need figures that are consistent, current, and traceable.",
+          cases: [
+            ["Profitability reports arrive too late.", "Agree on revenue and cost definitions, reconcile accounting and sales data, and design periodic reports with access to underlying figures."],
+            ["The cause of rising costs is unclear.", "Break down costs by cost center, product, and period, then highlight changes for finance teams to investigate."],
+            ["Cash flow is difficult to plan.", "Bring receivable and payable dates together and compare short-term scenarios with clear assumptions."],
+          ], cta: "Discuss a finance challenge",
         },
         {
-          id: "analytics",
-          title: "Analytics and dashboards",
-          intro:
-            "A useful report is more than an attractive chart. People need to know what a metric means, where its numbers come from, and how to investigate a change.",
-          examples:
-            "Sales and procurement reporting; cost and profitability tracking; customer and performance analysis; comparisons across periods or groups.",
-          inputs:
-            "Source data, metric definitions, periods and detail levels, users, and the decisions the report supports.",
-          output:
-            "Metric definitions, an interactive report, drill-down paths, and reconciled calculations.",
-          cta: "Discuss a dashboard.",
+          id: "intelligence", title: "Intelligent operations",
+          intro: "Scattered knowledge and repetitive tasks can slow down everyday work.",
+          cases: [
+            ["Answers are scattered across internal documents.", "Organize approved sources and assess a searchable assistant that cites documents and respects access levels."],
+            ["Similar requests are entered by hand repeatedly.", "Map the workflow, identify repetitive steps, and design limited automation with human approval."],
+            ["Request priorities are inconsistent.", "Define prioritization criteria and test a classification approach on past requests, with results open to review."],
+          ], cta: "Discuss intelligent operations",
         },
         {
-          id: "decisions",
-          title: "Decision support and automation",
-          intro:
-            "Some decisions benefit from scenarios, forecasts, or prioritization. Other workflows improve when repeated entry and manual handoffs are reduced. The right approach depends on data, the cost of errors, and how people will use it.",
-          examples:
-            "Demand forecasting when suitable history exists; procurement and supply scenarios; alerts for meaningful changes; automation of well-defined workflow steps.",
-          inputs:
-            "Historical data and quality, business rules, decision constraints, and a baseline for comparison.",
-          output:
-            "A tested model or rule, explicit assumptions and limits, a user workflow, and a way to monitor outcomes.",
-          cta: "Discuss a decision challenge.",
+          id: "industry", title: "Manufacturing & industry",
+          intro: "Production data should help teams understand downtime, capacity, and quality.",
+          cases: [
+            ["Production stops have no clear cause.", "Record reasons consistently and analyze downtime by machine, shift, and period to find recurring bottlenecks."],
+            ["Scrap is higher in some batches.", "Link production and quality records to compare materials, process conditions, and scrap rates."],
+            ["Plans exceed actual capacity.", "Show capacity, orders, and inventory together and compare scheduling options."],
+          ], cta: "Discuss production needs",
+        },
+        {
+          id: "commerce", title: "Commerce",
+          intro: "Procurement decisions need a shared view of demand, inventory, and supplier performance.",
+          cases: [
+            ["Some items are overstocked while others run out.", "Combine sales, orders, and inventory to flag at-risk items and review reorder points."],
+            ["Suppliers are hard to compare.", "Define measures for delivery time, quality, and price variation, then build a comparison report."],
+            ["Purchase price changes surface too late.", "Compare item prices across periods and contracts and flag changes that need review."],
+          ], cta: "Discuss commerce needs",
+        },
+        {
+          id: "sales", title: "Sales",
+          intro: "Sales reporting should help teams move from a number to a useful action.",
+          cases: [
+            ["A regional sales decline has no clear cause.", "Compare trends by region, product, and channel against a comparable period."],
+            ["Opportunities stall without follow-up.", "Define pipeline stages and report time spent in each stage to find drop-off points."],
+            ["Existing customers buy less often.", "Analyze purchase frequency and gaps, then identify accounts that may need follow-up."],
+          ], cta: "Discuss sales needs",
+        },
+        {
+          id: "healthcare", title: "Healthcare",
+          intro: "Hospitals and care centers need accurate data, privacy, and human oversight for service planning.",
+          cases: [
+            ["Wait times vary across departments.", "Analyze aggregated admission, referral, and service times to locate bottlenecks and plan capacity."],
+            ["Bed and equipment use fluctuates.", "Show occupancy, turnover, and service schedules to support resource planning."],
+            ["Department reports take too long to prepare.", "Agree on measures and design periodic reports from approved data with access controls and no automated clinical decisions."],
+          ], cta: "Discuss your care setting",
         },
       ],
-      closing:
-        "Deployment on customer infrastructure or use of an external service is assessed for each project with the customer's agreement. Service costs, confidentiality, and access are defined in the project scope.",
+      closing: "Each solution is defined and assessed around your workflow, data, and organizational constraints.",
     },
     demos: {
       title: "Demonstrations of how a solution could work.",
-      lead: "These demos use synthetic data and sample sources. They illustrate the scenarios shown here; results for a real project depend on the customer's data and workflow.",
+      lead: "Two concepts for exploring reporting and access to organizational knowledge.",
       promptLabel: "Sample request",
-      limitation: "Status and scope",
       dashboard: {
         title: "Intelligent dashboard",
         summary:
-          "A request such as “Show procurement for the last three months by region” becomes a structured report. Users can inspect filters, metrics, charts, and the rows behind each figure. Finance, sales, and procurement views come from a coherent sample dataset, with calculations behind each insight.",
+          "A dashboard concept for exploring metrics, charts, and the figures behind each number, with related finance, sales, and procurement views.",
         prompts: [
           "Show this month's sales by product",
           "Compare procurement costs with the previous period",
           "Show revenue, cost, and profit, and highlight important changes",
         ],
-        limits:
-          "This preview uses synthetic data and predefined views. It has no free-text interpretation, AI, or database connection; the full demo is in preparation.",
       },
       assistant: {
         title: "AI assistant",
         summary:
-          "An example of question answering over approved organizational sources. The intended interaction includes source references, follow-up questions, and a clear response when the answer is unknown. Enable a live launch only after the demo has been built and tested.",
+          "An assistant concept for finding answers in approved organizational sources, with source references and clear responses when an answer is unknown.",
         prompts: [
           "What are the purchase request approval steps, and which document supports the answer?",
         ],
-        limits:
-          "This scenario is not connected to real organizational sources yet.",
       },
-      note: "Demo data and sources are synthetic. The future demos must also show the sample-data label inside the experience.",
     },
     about: {
       title: "Technology matters when it solves a real problem.",
@@ -415,14 +401,12 @@ const copy = {
         ],
         ["Learning", "Test realistic scenarios and improve from feedback."],
       ],
-      team: "ViraData operates as an executive consulting practice. Arash Kazemi leads the technical work, and Armin Farhadi handles the financial and commercial side.",
+      team: "The ViraData team brings together specialists in data, AI, experience design, and enterprise solution delivery. We learn how each organization works, then design solutions that people can use and teams can evaluate.",
       cta: "Tell us about your challenge.",
     },
     contact: {
       title: "Let's start with your challenge.",
       lead: "Tell us about your business, current challenge, and the outcome you want. If you have not chosen a solution, describing the problem is a good start.",
-      unavailable:
-        "Email contact will be available here soon. Until delivery is verified, requests are not stored or sent from this page.",
       labels: {
         name: "Full name",
         email: "Email",
@@ -438,8 +422,6 @@ const copy = {
         message: "Describe your challenge or idea.",
         messageLength: "Use at least twelve characters for your message.",
       },
-      prepare: "Prepare email",
-      emailHint: "This opens your email app; complete the send there.",
     },
     metadata: {
       "": [
@@ -448,11 +430,11 @@ const copy = {
       ],
       solutions: [
         "Data & AI Solutions | ViraData",
-        "Explore enterprise assistants, analytics, decision support, and automation tailored to your organization.",
+        "Explore finance, intelligent operations, manufacturing, commerce, sales, and healthcare solutions.",
       ],
       demos: [
         "ViraData Demos",
-        "Explore sample-data demonstrations of an intelligent dashboard and AI assistant, with clear availability status.",
+        "Explore dashboard and AI assistant concepts in preparation.",
       ],
       about: [
         "About ViraData",

@@ -320,7 +320,7 @@ export function DecisionStory({ lang }: { lang: Locale }) {
       <div className="container story-intro">
         <span className="eyebrow">{c.label}</span>
         <h2>{c.question}</h2>
-        <p>{c.noAI}</p>
+        <p>{c.sample}</p>
       </div>
       <div className="container story-layout" ref={ref}>
         <div className="story-stage">
@@ -449,7 +449,6 @@ export function AssistantPreview({ lang }: { lang: Locale }) {
         <blockquote>{c.sourceBody}</blockquote>
         <small>{c.sourceLabel}</small>
       </details>
-      <p className="preview-disclaimer">{c.noAI}</p>
     </div>
   );
 }
@@ -476,7 +475,6 @@ export function DashboardPreview({ lang }: { lang: Locale }) {
         ))}
       </div>
       <ReportPanel lang={lang} stage={stage} />
-      <p className="preview-disclaimer">{c.noAI}</p>
     </div>
   );
 }
